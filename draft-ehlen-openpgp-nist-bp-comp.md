@@ -363,7 +363,7 @@ Accordingly, this specification only defines ML-DSA in composite combination wit
 The ECC-based encryption is defined here as a KEM.
 This is in contrast to {{?RFC9580}} where the ECC-based encryption is defined as a public-key encryption scheme.
 
-All elliptic curves for the use in the composite combinations are taken from {{I-D.ietf-openpgp-crypto-refresh}}.
+All elliptic curves for the use in the composite combinations are taken from {{?RFC9580}}.
 
 For interoperability this extension offers ML-* in composite combinations with the NIST curves P-256, P-384 defined in {{SP800-186}} and the Brainpool curves brainpoolP256r1, brainpoolP384r1 defined in {{RFC5639}}.
 
@@ -430,7 +430,7 @@ TBD                    | ML-DSA-87+ECDSA-brainpoolP384r1    | MAY         | {{ec
 
 \[ Note: this section to be removed before publication \]
 
-Algorithms indicated as MAY are not assigned a codepoint in the current state of the draft since there are not enough private/experimental code points available to cover all newly introduced public-key algorithm identifiers.
+The algorithms in this draft are not assigned a codepoint in the current state of the draft since there are not enough private/experimental code points available to cover all newly introduced public-key algorithm identifiers.
 
 The use of private/experimental codepoints during development are intended to be used in non-released software only, for experimentation and interop testing purposes only.
 An OpenPGP implementation MUST NOT produce a formal release using these experimental codepoints.
@@ -446,6 +446,10 @@ This is achieved via KEM combination, i.e. both key encapsulations/decapsulation
 ## Composite Signatures
 
 The ML-DSA+ECDSA signature consists of independent ML-DSA and ECC signatures, and an implementation MUST successfully validate both signatures to state that the ML-DSA+ECDSA signature is valid.
+
+## Key Version Binding
+
+All PQ(/T) asymmetric algorithms are to be used only in v6 (and newer) keys and certificates, with the single exception of ML-KEM-768+X25519 (algorithm ID 35), which is also allowed in v4 encryption-capable subkeys.
 
 # Composite KEM schemes
 
@@ -709,12 +713,12 @@ The secret key, as well as both values `R` and `S` of the signature MUST each be
 The following table describes the ECDSA parameters and artifact lengths:
 
 {: title="ECDSA parameters and artifact lengths in octets" #tab-ecdsa-artifacts}
-Algorithm ID reference                   | Curve           | Field size | Public key | Secret key | Signature value R | Signature value S
----------------------------------------: | --------------- | ---------- | ---------- | ---------- | ----------------- | -----------------
-TBD (ML-DSA-44+ECDSA-NIST-P-256)         | NIST P-256      | 32         | 65         | 32         | 32                | 32
-TBD (ML-DSA-65+ECDSA-NIST-P-384,ML-DSA-87+ECDSA-NIST-P-384)         | NIST P-384      | 48         | 97         | 48         | 48                | 48
-TBD (ML-DSA-65+ECDSA-brainpoolP256r1)    | brainpoolP256r1 | 32         | 65         | 32         | 32                | 32
-TBD (ML-DSA-87+ECDSA-brainpoolP384r1)    | brainpoolP384r1 | 48         | 97         | 48         | 48                | 48
+Algorithm ID reference                                      | Curve           | Field size | Public key | Secret key | Signature value R | Signature value S
+---------------------------------------:                    | --------------- | ---------- | ---------- | ---------- | ----------------- | -----------------
+TBD (ML-DSA-44+ECDSA-NIST-P-256)                            | NIST P-256      | 32         | 65         | 32         | 32                | 32
+TBD (ML-DSA-65+ECDSA-NIST-P-384,ML-DSA-87+ECDSA-NIST-P-384) | NIST P-384      | 48         | 97         | 48         | 48                | 48
+TBD (ML-DSA-65+ECDSA-brainpoolP256r1)                       | brainpoolP256r1 | 32         | 65         | 32         | 32                | 32
+TBD (ML-DSA-87+ECDSA-brainpoolP384r1)                       | brainpoolP384r1 | 48         | 97         | 48         | 48                | 48
 
 ### ML-DSA signatures {#mldsa-signature}
 
