@@ -336,7 +336,7 @@ As such this document extends [draft-ietf-openpgp-pqc-12] which introduces post-
 
 ### Terminology for Multi-Algorithm Schemes
 
-The terminology in this document is oriented towards the definitions in [draft-driscoll-pqt-hybrid-terminology].
+The terminology in this document is oriented towards the definitions in {{?RFC9794}}.
 Specifically, the terms "multi-algorithm", "composite" and "non-composite" are used in correspondence with the definitions therein.
 The abbreviation "PQ" is used for post-quantum schemes.
 To denote the combination of post-quantum and traditional schemes, the abbreviation "PQ/T" is used.
@@ -346,11 +346,6 @@ The short form "PQ(/T)" stands for PQ or PQ/T.
 
 This section describes the individual post-quantum cryptographic schemes.
 All schemes listed here are believed to provide security in the presence of a cryptographically relevant quantum computer.
-
-\[Note to the reader: This specification refers to the NIST PQC draft standards FIPS 203 and FIPS 204 as if they were a final specification.
-This is a temporary solution until the final versions of these documents are available.
-The goal is to provide a sufficiently precise specification of the algorithms already at the draft stage of this specification, so that it is possible for implementers to create interoperable implementations.
-Furthermore, we want to point out that, depending on possible future changes to the draft standards by NIST, this specification may be updated as soon as corresponding information becomes available.\]
 
 ### ML-KEM {#mlkem-intro}
 
@@ -366,7 +361,7 @@ Accordingly, this specification only defines ML-DSA in composite combination wit
 ## Elliptic Curve Cryptography
 
 The ECC-based encryption is defined here as a KEM.
-This is in contrast to {{I-D.ietf-openpgp-crypto-refresh}} where the ECC-based encryption is defined as a public-key encryption scheme.
+This is in contrast to {{?RFC9580}} where the ECC-based encryption is defined as a public-key encryption scheme.
 
 All elliptic curves for the use in the composite combinations are taken from {{I-D.ietf-openpgp-crypto-refresh}}.
 
@@ -539,11 +534,11 @@ ML-KEM has the parametrization with the corresponding artifact lengths in octets
 All artifacts are encoded as defined in [FIPS-203].
 
 {: title="ML-KEM parameters artifact lengths in octets" #tab-mlkem-artifacts}
-Algorithm ID reference | ML-KEM      | Public key | Secret key | Ciphertext | Key share
-----------------------:| ----------- | ---------- | ---------- | ---------- | ---------
-TBD                    | ML-KEM-512  | 800        | 1632       |  768       | 32
-TBD                    | ML-KEM-768  | 1184       | 2400       | 1088       | 32
-TBD                    | ML-KEM-1024 | 1568       | 3168       | 1568       | 32
+Algorithm ID reference  | ML-KEM      | Public key | Secret key | Ciphertext | Key share
+----------------------: | ----------- | ---------- | ---------- | ---------- | ---------
+TBD                     | ML-KEM-512  | 800        | 64         | 768        | 32
+TBD                     | ML-KEM-768  | 1184       | 64         | 1088       | 32
+TBD                     | ML-KEM-1024 | 1568       | 64         | 1568       | 32
 
 To instantiate `ML-KEM`, one must select a parameter set from the column "ML-KEM" of {{tab-mlkem-artifacts}}.
 
@@ -646,11 +641,11 @@ The procedure to perform public-key decryption with an ML-KEM+ECDH composite sch
 
 ## Packet specifications
 
-### Public-Key Encrypted Session Key Packets (Tag 1) {#ecc-mlkem-pkesk}
+### Public-Key Encrypted Session Key Packets (Packet Type ID 1) {#ecc-mlkem-pkesk}
 
 The algorithm-specific fields consists of the output of the encryption procedure described in {{ecc-mlkem-encryption}}:
 
- - A fixed-length octet string representing an ECC ephemeral public key in the format associated with the curve as specified in {{ecc-kem}}.
+ - A fixed-length octet string representing an ECDH ephemeral public key in the format associated with the curve as specified in {{ecc-kem}}.
 
  - A fixed-length octet string of the ML-KEM ciphertext, whose length depends on the algorithm ID as specified in {{tab-mlkem-artifacts}}.
 
@@ -666,14 +661,22 @@ In the case of v3 PKESK packets for ML-KEM composite schemes, the symmetric algo
 
 In the case of a v3 PKESK, a receiving implementation MUST check if the length of the unwrapped symmetric key matches the symmetric algorithm identifier, and abort if this is not the case.
 
+Implementations MUST NOT use the obsolete Symmetrically Encrypted Data packet (Packet Type ID 9) to encrypt data protected with the algorithms described in this document.
+
 
 ### Key Material Packets {#mlkem-ecc-key}
+
+The composite ML-KEM + ECDH schemes defined in this specification MUST be used only with v6 keys, as defined in [RFC9580], or newer versions defined by updates of that document.
+
+#### Public Key Packets (Packet Type IDs 6 and 14)
 
 The algorithm-specific public key is this series of values:
 
  - A fixed-length octet string representing an EC point public key, in the point format associated with the curve specified in {{ecc-kem}}.
 
  - A fixed-length octet string containing the ML-KEM public key, whose length depends on the algorithm ID as specified in {{tab-mlkem-artifacts}}.
+
+#### Secret Key Packets (Packet Type IDs 5 and 7)
 
 The algorithm-specific secret key is these two values:
 
