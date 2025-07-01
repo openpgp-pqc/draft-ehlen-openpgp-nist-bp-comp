@@ -846,6 +846,10 @@ TBD    | ML-KEM-1024+ECDH-NIST-P-384      | 97 octets ECDSA public key {{tab-ecd
 TBD    | ML-KEM-768+ECDH-brainpoolP256r1  | 65 octets ECDSA public key {{tab-ecdsa-nist-artifacts}}, 1184 octets ML-KEM-768 public key ({{tab-mldsa-artifacts}}) | 32 octets ECDSA secret key {{tab-ecdsa-nist-artifacts}}, 64 octets ML-KEM-768 secret key ({{tab-mldsa-artifacts}})  | N/A                                                                                                           | 65 octets ECDH ciphertext, 1088 octets ML-KEM-768 ciphertext, 1 octet remaining length, \[1 octet algorithm ID in case of v3 PKESK,\] `n` octets wrapped session key ({{ecc-mlkem-pkesk}})  | {{ecc-mldsa}}
 TBD    | ML-KEM-1024+ECDH-brainpoolP384r1 | 97 octets ECDSA public key {{tab-ecdsa-nist-artifacts}}, 1568 octets ML-KEM-768 public key ({{tab-mldsa-artifacts}}) | 48 octets ECDSA secret key {{tab-ecdsa-nist-artifacts}}, 64 octets ML-KEM-1024 secret key ({{tab-mldsa-artifacts}}) | N/A                                                                                                           | 97 octets ECDH ciphertext, 1568 octets ML-KEM-1024 ciphertext, 1 octet remaining length, \[1 octet algorithm ID in case of v3 PKESK,\] `n` octets wrapped session key ({{ecc-mlkem-pkesk}}) | {{ecc-mldsa}}
 
+IANA is asked to add the following note to this registry:
+
+> The field specifications enclosed in square brackets for PKESK Format represent fields that may or may not be present, depending on the PKESK version.
+
 # Changelog
 
 
