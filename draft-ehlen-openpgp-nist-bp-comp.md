@@ -336,7 +336,7 @@ As such this document extends [draft-ietf-openpgp-pqc-12] which introduces post-
 
 ### Terminology for Multi-Algorithm Schemes
 
-The terminology in this document is oriented towards the definitions in [draft-driscoll-pqt-hybrid-terminology].
+The terminology in this document is oriented towards the definitions in {{?RFC9794}}.
 Specifically, the terms "multi-algorithm", "composite" and "non-composite" are used in correspondence with the definitions therein.
 The abbreviation "PQ" is used for post-quantum schemes.
 To denote the combination of post-quantum and traditional schemes, the abbreviation "PQ/T" is used.
@@ -346,11 +346,6 @@ The short form "PQ(/T)" stands for PQ or PQ/T.
 
 This section describes the individual post-quantum cryptographic schemes.
 All schemes listed here are believed to provide security in the presence of a cryptographically relevant quantum computer.
-
-\[Note to the reader: This specification refers to the NIST PQC draft standards FIPS 203 and FIPS 204 as if they were a final specification.
-This is a temporary solution until the final versions of these documents are available.
-The goal is to provide a sufficiently precise specification of the algorithms already at the draft stage of this specification, so that it is possible for implementers to create interoperable implementations.
-Furthermore, we want to point out that, depending on possible future changes to the draft standards by NIST, this specification may be updated as soon as corresponding information becomes available.\]
 
 ### ML-KEM {#mlkem-intro}
 
@@ -366,9 +361,9 @@ Accordingly, this specification only defines ML-DSA in composite combination wit
 ## Elliptic Curve Cryptography
 
 The ECC-based encryption is defined here as a KEM.
-This is in contrast to {{I-D.ietf-openpgp-crypto-refresh}} where the ECC-based encryption is defined as a public-key encryption scheme.
+This is in contrast to {{?RFC9580}} where the ECC-based encryption is defined as a public-key encryption scheme.
 
-All elliptic curves for the use in the composite combinations are taken from {{I-D.ietf-openpgp-crypto-refresh}}.
+All elliptic curves for the use in the composite combinations are taken from {{?RFC9580}}.
 
 For interoperability this extension offers ML-* in composite combinations with the NIST curves P-256, P-384 defined in {{SP800-186}} and the Brainpool curves brainpoolP256r1, brainpoolP384r1 defined in {{RFC5639}}.
 
@@ -435,7 +430,7 @@ TBD                    | ML-DSA-87+ECDSA-brainpoolP384r1    | MAY         | {{ec
 
 \[ Note: this section to be removed before publication \]
 
-Algorithms indicated as MAY are not assigned a codepoint in the current state of the draft since there are not enough private/experimental code points available to cover all newly introduced public-key algorithm identifiers.
+The algorithms in this draft are not assigned a codepoint in the current state of the draft since there are not enough private/experimental code points available to cover all newly introduced public-key algorithm identifiers.
 
 The use of private/experimental codepoints during development are intended to be used in non-released software only, for experimentation and interop testing purposes only.
 An OpenPGP implementation MUST NOT produce a formal release using these experimental codepoints.
@@ -451,6 +446,10 @@ This is achieved via KEM combination, i.e. both key encapsulations/decapsulation
 ## Composite Signatures
 
 The ML-DSA+ECDSA signature consists of independent ML-DSA and ECC signatures, and an implementation MUST successfully validate both signatures to state that the ML-DSA+ECDSA signature is valid.
+
+## Key Version Binding
+
+All PQ(/T) asymmetric algorithms are to be used only in v6 (and newer) keys and certificates, with the single exception of ML-KEM-768+X25519 (algorithm ID 35), which is also allowed in v4 encryption-capable subkeys.
 
 # Composite KEM schemes
 
@@ -539,11 +538,11 @@ ML-KEM has the parametrization with the corresponding artifact lengths in octets
 All artifacts are encoded as defined in [FIPS-203].
 
 {: title="ML-KEM parameters artifact lengths in octets" #tab-mlkem-artifacts}
-Algorithm ID reference | ML-KEM      | Public key | Secret key | Ciphertext | Key share
-----------------------:| ----------- | ---------- | ---------- | ---------- | ---------
-TBD                    | ML-KEM-512  | 800        | 1632       |  768       | 32
-TBD                    | ML-KEM-768  | 1184       | 2400       | 1088       | 32
-TBD                    | ML-KEM-1024 | 1568       | 3168       | 1568       | 32
+Algorithm ID reference  | ML-KEM      | Public key | Secret key | Ciphertext | Key share
+----------------------: | ----------- | ---------- | ---------- | ---------- | ---------
+TBD                     | ML-KEM-512  | 800        | 64         | 768        | 32
+TBD                     | ML-KEM-768  | 1184       | 64         | 1088       | 32
+TBD                     | ML-KEM-1024 | 1568       | 64         | 1568       | 32
 
 To instantiate `ML-KEM`, one must select a parameter set from the column "ML-KEM" of {{tab-mlkem-artifacts}}.
 
@@ -580,9 +579,9 @@ The ML-KEM+ECDH composite public-key encryption schemes are built according to t
 
  - The encapsulation algorithm of an ECDH-KEM is invoked to create an ECC ciphertext together with an ECC symmetric key share.
 
- - A Key-Encryption-Key (KEK) is computed as the output of a key combiner that receives as input both of the above created symmetric key shares and the protocol binding information.
+ - A Key-Encryption-Key (KEK) is computed as the output of a key combiner that receives as input both of the above created symmetric key shares and protocol binding information.
 
- - The session key for content encryption is then encrypted with the AES Key Wrap Algorithm {{RFC3394}} with AES-256 as the encryption algorithm and using the KEK as the encryption key.
+ - The session key for content encryption is then wrapped as described in {{RFC3394}} using AES-256 as algorithm and the KEK as key.
 
  - The PKESK package's algorithm-specific parts are made up of the ML-KEM ciphertext, the ECC ciphertext, and the wrapped session key.
 
@@ -616,7 +615,7 @@ The procedure to perform public-key encryption with an ML-KEM+ECDH composite sch
 
  8. Compute `C := AESKeyWrap(KEK, sessionKey)` with AES-256 as per {{RFC3394}} that includes a 64 bit integrity check
 
- 9. Output the algorithm specific part of the PKESK as `eccCipherText || mlkemCipherText len(symAlgId, C) (|| symAlgId) || C`, where both `symAlgId` and `len(C, symAlgId)` are single octet fields, `symAlgId` denotes the symmetric algorithm ID used and is present only for a v3 PKESK, and `len(C, symAlgId)` denotes the combined octet length of the fields specified as the arguments.
+ 9. Output the algorithm specific part of the PKESK as `eccCipherText || mlkemCipherText || len(C, symAlgId) (|| symAlgId) || C`, where both `symAlgId` and `len(C, symAlgId)` are single octet fields, `symAlgId` denotes the symmetric algorithm ID used and is present only for a v3 PKESK, and `len(C, symAlgId)` denotes the combined octet length of the fields specified as the arguments.
 
 ### Decryption procedure
 
@@ -632,7 +631,7 @@ The procedure to perform public-key decryption with an ML-KEM+ECDH composite sch
 
  5. Instantiate the ECDH-KEM and the ML-KEM depending on the algorithm ID according to {{tab-mlkem-ecc-composite}}
 
- 6. Parse `ecdhCipherText`, `mlkemCipherText`, and `C` from `encryptedKey` encoded as `ecdhCipherText || mlkemCipherText || len(symAlgId, C) (|| symAlgId) || C` as specified in {{ecc-mlkem-pkesk}}, where `symAlgId` is present only in the case of a v3 PKESK.
+ 6. Parse `ecdhCipherText`, `mlkemCipherText`, and `C` from `encryptedKey` encoded as `ecdhCipherText || mlkemCipherText || len(C, symAlgId) (|| symAlgId) || C` as specified in {{ecc-mlkem-pkesk}}, where `symAlgId` is present only in the case of a v3 PKESK.
 
  7. Compute `(ecdhKeyShare) := ECDH-KEM.Decaps(ecdhCipherText, ecdhSecretKey, ecdhPublicKey)`
 
@@ -646,11 +645,11 @@ The procedure to perform public-key decryption with an ML-KEM+ECDH composite sch
 
 ## Packet specifications
 
-### Public-Key Encrypted Session Key Packets (Tag 1) {#ecc-mlkem-pkesk}
+### Public-Key Encrypted Session Key Packets (Packet Type ID 1) {#ecc-mlkem-pkesk}
 
 The algorithm-specific fields consists of the output of the encryption procedure described in {{ecc-mlkem-encryption}}:
 
- - A fixed-length octet string representing an ECC ephemeral public key in the format associated with the curve as specified in {{ecc-kem}}.
+ - A fixed-length octet string representing an ECDH ephemeral public key in the format associated with the curve as specified in {{ecc-kem}}.
 
  - A fixed-length octet string of the ML-KEM ciphertext, whose length depends on the algorithm ID as specified in {{tab-mlkem-artifacts}}.
 
@@ -666,8 +665,14 @@ In the case of v3 PKESK packets for ML-KEM composite schemes, the symmetric algo
 
 In the case of a v3 PKESK, a receiving implementation MUST check if the length of the unwrapped symmetric key matches the symmetric algorithm identifier, and abort if this is not the case.
 
+Implementations MUST NOT use the obsolete Symmetrically Encrypted Data packet (Packet Type ID 9) to encrypt data protected with the algorithms described in this document.
+
 
 ### Key Material Packets {#mlkem-ecc-key}
+
+The composite ML-KEM + ECDH schemes defined in this specification MUST be used only with v6 keys, as defined in [RFC9580], or newer versions defined by updates of that document.
+
+#### Public Key Packets (Packet Type IDs 6 and 14)
 
 The algorithm-specific public key is this series of values:
 
@@ -675,11 +680,16 @@ The algorithm-specific public key is this series of values:
 
  - A fixed-length octet string containing the ML-KEM public key, whose length depends on the algorithm ID as specified in {{tab-mlkem-artifacts}}.
 
+#### Secret Key Packets (Packet Type IDs 5 and 7)
+
 The algorithm-specific secret key is these two values:
 
  - A fixed-length octet string of the encoded secret scalar, whose encoding and length depend on the algorithm ID as specified in {{ecc-kem}}.
 
- - A fixed-length octet string containing the ML-KEM secret key, whose length depends on the algorithm ID as specified in {{tab-mlkem-artifacts}}.
+ - A fixed-length octet string containing the ML-KEM secret key in seed format, whose length is 64 octets (compare {{tab-mlkem-artifacts}}).
+   The seed format is defined in accordance with Section 3.3 of [FIPS-203].
+   Namely, the secret key is given by the concatenation of the values of `d` and `z`, generated in steps 1 and 2 of `ML-KEM.KeyGen` [FIPS-203], each of a length of 32 octets.
+   Upon parsing the secret key format, or before using the secret key, for the expansion of the key, the function `ML-KEM.KeyGen_internal` [FIPS-203] has to be invoked with the parsed values of `d` and `z` as input.
 
 # Composite Signature Schemes
 
@@ -706,21 +716,23 @@ The secret key, as well as both values `R` and `S` of the signature MUST each be
 The following table describes the ECDSA parameters and artifact lengths:
 
 {: title="ECDSA parameters and artifact lengths in octets" #tab-ecdsa-artifacts}
-Algorithm ID reference                   | Curve           | Field size | Public key | Secret key | Signature value R | Signature value S
----------------------------------------: | --------------- | ---------- | ---------- | ---------- | ----------------- | -----------------
-TBD (ML-DSA-44+ECDSA-NIST-P-256)         | NIST P-256      | 32         | 65         | 32         | 32                | 32
-TBD (ML-DSA-65+ECDSA-NIST-P-384,ML-DSA-87+ECDSA-NIST-P-384)         | NIST P-384      | 48         | 97         | 48         | 48                | 48
-TBD (ML-DSA-65+ECDSA-brainpoolP256r1)    | brainpoolP256r1 | 32         | 65         | 32         | 32                | 32
-TBD (ML-DSA-87+ECDSA-brainpoolP384r1)    | brainpoolP384r1 | 48         | 97         | 48         | 48                | 48
+Algorithm ID reference                                      | Curve           | Field size | Public key | Secret key | Signature value R | Signature value S
+---------------------------------------:                    | --------------- | ---------- | ---------- | ---------- | ----------------- | -----------------
+TBD (ML-DSA-44+ECDSA-NIST-P-256)                            | NIST P-256      | 32         | 65         | 32         | 32                | 32
+TBD (ML-DSA-65+ECDSA-NIST-P-384,ML-DSA-87+ECDSA-NIST-P-384) | NIST P-384      | 48         | 97         | 48         | 48                | 48
+TBD (ML-DSA-65+ECDSA-brainpoolP256r1)                       | brainpoolP256r1 | 32         | 65         | 32         | 32                | 32
+TBD (ML-DSA-87+ECDSA-brainpoolP384r1)                       | brainpoolP384r1 | 48         | 97         | 48         | 48                | 48
 
 ### ML-DSA signatures {#mldsa-signature}
 
-For ML-DSA signature generation the default hedged version of `ML-DSA.Sign` given in [FIPS-204] is used.
+Throughout this specification ML-DSA refers to the default pure and hedged version of ML-DSA defined in [FIPS-204].
+
+ML-DSA signature generation is performed using the default hedged version of the `ML-DSA.Sign` algorithm, as specified in [FIPS-204], with an empty context string `ctx`.
 That is, to sign with ML-DSA the following operation is defined:
 
     (mldsaSignature) <- ML-DSA.Sign(mldsaSecretKey, dataDigest)
 
-For ML-DSA signature verification the algorithm ML-DSA.Verify given in [FIPS-204] is used.
+ML-DSA signature verification is performed using the `ML-DSA.Verify` algorithm, as specified in [FIPS-204], with an empty context string `ctx`.
 That is, to verify with ML-DSA the following operation is defined:
 
     (verified) <- ML-DSA.Verify(mldsaPublicKey, dataDigest, mldsaSignature)
@@ -729,28 +741,13 @@ ML-DSA has the parametrization with the corresponding artifact lengths in octets
 All artifacts are encoded as defined in [FIPS-204].
 
 {: title="ML-DSA parameters and artifact lengths in octets" #tab-mldsa-artifacts}
-Algorithm ID reference | ML-DSA    | Public key | Secret key | Signature value
-----------------------:| --------- | -----------| ---------- | ---------------
-TBD                    | ML-DSA-44 | 1312       | 2528       | 2420
-TBD                    | ML-DSA-65 | 1952       | 4032       | 3293
-TBD                    | ML-DSA-87 | 2592       | 4896       | 4595
+Algorithm ID reference  | ML-DSA    | Public key  | Secret key | Signature value
+----------------------: | --------- | ----------- | ---------- | ---------------
+TBD                     | ML-DSA-44 | 1312        | 32         | 2420
+TBD                     | ML-DSA-65 | 1952        | 32         | 3309
+TBD                     | ML-DSA-87 | 2592        | 32         | 4627
 
 ## Composite Signature Schemes with ML-DSA {#ecc-mldsa}
-
-### Signature data digest {#mldsa-sig-data-digest}
-
-Signature data (i.e. the data to be signed) is digested prior to signing operations, see {{I-D.ietf-openpgp-crypto-refresh}}, Section 5.2.4.
-Composite ML-DSA+ECDSA signatures MUST use the associated hash algorithm as specified in {{tab-mldsa-hash}} for the signature data digest.
-Signatures using other hash algorithms MUST be considered invalid.
-
-An implementation supporting a specific ML-DSA+ECDSA algorithm MUST also support the matching hash algorithm.
-
-{: title="Binding between ML-DSA+ECDSA and signature data digest" #tab-mldsa-hash}
-Algorithm ID reference | Hash function | Hash function ID reference
-----------------------:| ------------- | --------------------------
-TBD (ML-DSA-44 IDs)    | SHA3-256      | 12
-TBD (ML-DSA-65 IDs)    | SHA3-512      | 14
-TBD (ML-DSA-87 IDs)    | SHA3-512      | 14
 
 ### Key generation procedure {#ecc-mldsa-generation}
 
@@ -763,7 +760,7 @@ For ECC this is done following the relative specification in {{SP800-186}} or {{
 
 To sign a message `M` with ML-DSA+ECDSA the following sequence of operations has to be performed:
 
- 1. Generate `dataDigest` according to {{I-D.ietf-openpgp-crypto-refresh}}, Section 5.2.4
+ 1. Generate `dataDigest` according to {{?RFC9580}}, Section 5.2.4
 
  2. Create the ECDSA signature over `dataDigest` with `ECDSA.Sign()` from {{ecdsa-signature}}
 
@@ -784,10 +781,9 @@ As specified in {{composite-signatures}} an implementation MUST validate both si
 
 ## Packet Specifications
 
-### Signature Packet (Tag 2) {#ecc-mldsa-sig-packet}
+### Signature Packet (Packet Type ID 2) {#ecc-mldsa-sig-packet}
 
-The composite ML-DSA+ECDSA schemes MUST be used only with v6 signatures, as defined in [I-D.ietf-openpgp-crypto-refresh].
-
+The composite ML-DSA + ECDSA schemes MUST be used only with v6 signatures, as defined in [RFC9580], or newer versions defined by updates of that document.
 
 The algorithm-specific v6 signature parameters for ML-DSA+ECDSA signatures consist of:
 
@@ -797,9 +793,14 @@ The algorithm-specific v6 signature parameters for ML-DSA+ECDSA signatures consi
 
  - A fixed-length octet string of the ML-DSA signature value, whose length depends on the algorithm ID as specified in {{tab-mldsa-artifacts}}.
 
+A composite ML-DSA + ECDSA signature MUST use a hash algorithm with a digest size of at least 256 bits for the computation of the message digest.
+A verifying implementation MUST reject any composite ML-DSA + ECDSA signature that uses a hash algorithm with a smaller digest size.
+
 ### Key Material Packets
 
-The composite ML-DSA+ECDSA schemes MUST be used only with v6 keys, as defined in [I-D.ietf-openpgp-crypto-refresh].
+The composite ML-DSA+ECDSA schemes MUST be used only with v6 keys, as defined in [RFC9580], or newer versions defined by updates of that document.
+
+#### Public Key Packets (Packet Type IDs 6 and 14)
 
 The algorithm-specific public key for ML-DSA+ECDSA keys is this series of values:
 
@@ -807,11 +808,16 @@ The algorithm-specific public key for ML-DSA+ECDSA keys is this series of values
 
  - A fixed-length octet string containing the ML-DSA public key, whose length depends on the algorithm ID as specified in {{tab-mldsa-artifacts}}.
 
+#### Secret Key Packets (Packet Type IDs 5 and 7)
+
 The algorithm-specific secret key for ML-DSA+ECDSA keys is this series of values:
 
  - A fixed-length octet string representing the ECDSA secret key as a big-endian encoded integer, whose length depends on the algorithm used as specified in {{tab-ecdsa-artifacts}}.
 
- - A fixed-length octet string containing the ML-DSA secret key, whose length depends on the algorithm ID as specified in {{tab-mldsa-artifacts}}.
+ - A fixed-length octet string containing the ML-DSA secret key in seed format, whose length is 32 octets (compare {{tab-mldsa-artifacts}}).
+   The seed format is defined in accordance with Section 3.6.3 of [FIPS-204].
+   Namely, the secret key is given by the value `xi` generated in step 1 of `ML-DSA.KeyGen` [FIPS-204].
+   Upon parsing the secret key format, or before using the secret key, for the expansion of the key, the function `ML-DSA.KeyGen_internal` [FIPS-204] has to be invoked with the parsed value of `xi` as input.
 
 
 
