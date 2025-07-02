@@ -546,7 +546,7 @@ All artifacts are encoded as defined in [FIPS-203].
 | Ciphertext             | 768 octets | 1088 octets | 1568 octets |
 | Key share              | 32 octets  | 32 octets   | 32 octets   |
 
-To instantiate `ML-KEM`, one must select a parameter set from the column "ML-KEM" of {{tab-mlkem-artifacts}}.
+To instantiate `ML-KEM`, one must select a parameter set from {{tab-mlkem-artifacts}}.
 
 ## Composite Encryption Schemes with ML-KEM {#ecc-mlkem}
 
@@ -635,7 +635,7 @@ The procedure to perform public-key decryption with an ML-KEM + ECDH composite s
 
 ### Public-Key Encrypted Session Key Packets (Packet Type ID 1) {#ecc-mlkem-pkesk}
 
-The algorithm-specific fields consists of the output of the encryption procedure described in {{ecc-mlkem-encryption}}:
+The algorithm-specific fields consist of the output of the encryption procedure described in {{ecc-mlkem-encryption}}:
 
  - A fixed-length octet string representing an ECDH ephemeral public key in the format associated with the curve as specified in {{ecc-kem}}.
 
@@ -647,7 +647,7 @@ The algorithm-specific fields consists of the output of the encryption procedure
 
  - The wrapped session key represented as an octet string.
 
-Note that like in the case of the algorithms X25519 and X448 specified in {{I-D.ietf-openpgp-crypto-refresh}}, for the ML-KEM + ECDH composite schemes, in the case of a v3 PKESK packet, the symmetric algorithm identifier is not encrypted.
+Note that like in the case of the algorithms X25519 and X448 specified in [RFC9580], for the ML-KEM + ECDH composite schemes, in the case of a v3 PKESK packet, the symmetric algorithm identifier is not encrypted.
 Instead, it is placed in plaintext after the `mlkemCipherText` and before the length octet preceding the wrapped session key.
 In the case of v3 PKESK packets for ML-KEM composite schemes, the symmetric algorithm used MUST be AES-128, AES-192 or AES-256 (algorithm ID 7, 8 or 9).
 
