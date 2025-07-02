@@ -546,19 +546,6 @@ TBD                     | ML-KEM-1024 | 1568       | 64         | 1568       | 3
 
 To instantiate `ML-KEM`, one must select a parameter set from the column "ML-KEM" of {{tab-mlkem-artifacts}}.
 
-The procedure to perform `ML-KEM.Encaps()` is as follows:
-
- 1. Invoke `(mlkemCipherText, mlkemKeyShare) <- ML-KEM.Encaps(mlkemPublicKey)`, where `mlkemPublicKey` is the recipient's public key
-
- 2. Set `mlkemCipherText` as the ML-KEM ciphertext
-
- 3. Set `mlkemKeyShare` as the ML-KEM symmetric key share
-
-The procedure to perform `ML-KEM.Decaps()` is as follows:
-
- 1. Invoke `mlkemKeyShare <-  ML-KEM.Decaps(mlkemCipherText, mlkemSecretKey)`
-
- 2. Set `mlkemKeyShare` as the ML-KEM symmetric key share
 
 ## Composite Encryption Schemes with ML-KEM {#ecc-mlkem}
 
