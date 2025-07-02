@@ -21,3 +21,4 @@ draft-individual-openpgp-nist-bp-comp.xml
 package-lock.json
 report.xml
 !requirements.txt
+xml-dl
