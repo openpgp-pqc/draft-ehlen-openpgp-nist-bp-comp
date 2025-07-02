@@ -12,22 +12,22 @@
 <meta content="
        This document defines PQ/T composite schemes based on ML-KEM and ML-DSA combined with ECC algorithms using the NIST and Brainpool domain parameters for the OpenPGP protocol. 
     " name="description">
-<meta content="xml2rfc 3.25.0" name="generator">
+<meta content="xml2rfc 3.29.0" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ehlen-openpgp-nist-bp-comp-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.25.0
-    Python 3.12.8
+  xml2rfc 3.29.0
+    Python 3.12.11
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
-    Jinja2 3.1.5
-    lxml 5.3.0
-    platformdirs 4.3.6
+    Jinja2 3.1.6
+    lxml 5.3.1
+    platformdirs 4.3.8
     pycountry 24.6.1
     PyYAML 6.0.2
-    requests 2.32.3
-    setuptools 70.3.0
+    requests 2.32.4
+    setuptools 80.9.0
     wcwidth 0.2.13
 -->
 <link href="draft-ehlen-openpgp-nist-bp-comp.xml" rel="alternate" type="application/rfc+xml">
@@ -438,7 +438,7 @@ dl {
     margin-bottom: 0;
   }
 }
-dl > dt {
+dl:not(.dlNewline) > dt {
   float: left;
   margin-right: 2ch;
   min-width: 8ch;
@@ -1047,11 +1047,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">NIST Brainpool PQC</td>
-<td class="right">January 2025</td>
+<td class="right">July 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Dang, et al.</td>
-<td class="center">Expires 11 July 2025</td>
+<td class="center">Expires 3 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ehlen-openpgp-nist-bp-comp-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-01-07" class="published">7 January 2025</time>
+<time datetime="2025-07-02" class="published">2 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-07-11">11 July 2025</time></dd>
+<dd class="expires"><time datetime="2026-01-03">3 January 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1130,7 +1130,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 11 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 3 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2472,7 +2472,10 @@ For ECC this is done following the relative specification in <span>[<a href="#SP
       <h2 id="name-security-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">TBD<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">The following security considerations given in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span> equally apply to this document: the security aspects of composite signatures (Section 9.1 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>); the arguments for the security
+features of the KEM combiner given in Section 9.2 of <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>, as also the NIST and Brainpool curves represent nominal groups according to <span>[<a href="#ABH_21" class="cite xref">ABH_21</a>]</span>; the considerations regarding domain separartion and context binding
+for the KEM combiner (Section 9.2.1 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>); the use of the hedged variant of ML-DSA (Section 9.3 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>); the minimum digest size for PQ/T signatures (Section 9.4 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>); the use of symmetric encryption in SEIPD packets (Section 9.5 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>) and key generation for composite schemes (Section 9.6 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>).<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2">When implementing or using of the algorithms defined in this specification, the above referenced security considerations should be noted.<a href="#section-7-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -2547,6 +2550,10 @@ The field specifications enclosed in brackets for the ML-KEM+ECDH composite algo
         <dd>
 <span class="refAuthor">Kousidis, S.</span>, <span class="refAuthor">Roth, J.</span>, <span class="refAuthor">Strenzke, F.</span>, and <span class="refAuthor">A. Wussler</span>, <span class="refTitle">"Post-Quantum Cryptography in OpenPGP (draft-ietf-openpgp-pqc-06)"</span>, <time datetime="2024" class="refDate">2024</time>, <span>&lt;<a href="https://www.ietf.org/archive/id/draft-ietf-openpgp-pqc-06.html">https://www.ietf.org/archive/id/draft-ietf-openpgp-pqc-06.html</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="draft-ietf-openpgp-pqc-12">[draft-ietf-openpgp-pqc-12]</dt>
+        <dd>
+<span class="refAuthor">Kousidis, S.</span>, <span class="refAuthor">Roth, J.</span>, <span class="refAuthor">Strenzke, F.</span>, and <span class="refAuthor">A. Wussler</span>, <span class="refTitle">"Post-Quantum Cryptography in OpenPGP (draft-ietf-openpgp-pqc-12)"</span>, <time datetime="2025" class="refDate">2025</time>, <span>&lt;<a href="https://www.ietf.org/archive/id/draft-ietf-openpgp-pqc-12.html">https://www.ietf.org/archive/id/draft-ietf-openpgp-pqc-12.html</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-openpgp-crypto-refresh">[I-D.ietf-openpgp-crypto-refresh]</dt>
         <dd>
 <span class="refAuthor">Wouters, P.</span>, <span class="refAuthor">Huigens, D.</span>, <span class="refAuthor">Winter, J.</span>, and <span class="refAuthor">N. Yutaka</span>, <span class="refTitle">"OpenPGP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-openpgp-crypto-refresh-13</span>, <time datetime="2024-01-04" class="refDate">4 January 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-openpgp-crypto-refresh-13">https://datatracker.ietf.org/doc/html/draft-ietf-openpgp-crypto-refresh-13</a>&gt;</span>. </dd>
@@ -2576,6 +2583,10 @@ The field specifications enclosed in brackets for the ML-KEM+ECDH composite algo
 <a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="ABH_21">[ABH_21]</dt>
+        <dd>
+<span class="refAuthor">Alwen, J.</span>, <span class="refAuthor">Blanchet, B.</span>, <span class="refAuthor">Hauck, E.</span>, <span class="refAuthor">Kiltz, E.</span>, <span class="refAuthor">Lipp, B.</span>, and <span class="refAuthor">D. Riepel</span>, <span class="refTitle">"Analysing the HPKE Standard"</span>, <time datetime="2021" class="refDate">2021</time>, <span>&lt;<a href="https://doi.org/10.1007/978-3-030-77870-5_4">https://doi.org/10.1007/978-3-030-77870-5_4</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="BDPA08">[BDPA08]</dt>
         <dd>
 <span class="refAuthor">Bertoni, G.</span>, <span class="refAuthor">Daemen, J.</span>, <span class="refAuthor">Peters, M.</span>, and <span class="refAuthor">G. Assche</span>, <span class="refTitle">"On the Indifferentiability of the Sponge Construction"</span>, <time datetime="2008" class="refDate">2008</time>, <span>&lt;<a href="https://doi.org/10.1007/978-3-540-78967-3_11">https://doi.org/10.1007/978-3-540-78967-3_11</a>&gt;</span>. </dd>
