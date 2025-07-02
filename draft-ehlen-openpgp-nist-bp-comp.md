@@ -537,12 +537,14 @@ Note that `mlkemPublicKey` is the encapsulation and `mlkemSecretKey` is the deca
 ML-KEM has the parametrization with the corresponding artifact lengths in octets as given in {{tab-mlkem-artifacts}}.
 All artifacts are encoded as defined in [FIPS-203].
 
-{: title="ML-KEM parameters artifact lengths in octets" #tab-mlkem-artifacts}
-Algorithm ID reference  | ML-KEM      | Public key | Secret key | Ciphertext | Key share
-----------------------: | ----------- | ---------- | ---------- | ---------- | ---------
-TBD                     | ML-KEM-512  | 800        | 64         | 768        | 32
-TBD                     | ML-KEM-768  | 1184       | 64         | 1088       | 32
-TBD                     | ML-KEM-1024 | 1568       | 64         | 1568       | 32
+{: title="ML-KEM parameters and artifact lengths" #tab-mlkem-artifacts}
+|                        | ML-KEM-512 | ML-KEM-768  | ML-KEM-1024 |
+|------------------------| ---------- | ----------- | ----------- |
+| Algorithm ID reference | TBD        | TBD         | TBD         |
+| Public key             | 800 octets | 1184 octets | 1568 octets |
+| Secret key             | 64 octets  | 64 octets   | 64 octets   |
+| Ciphertext             | 768 octets | 1088 octets | 1568 octets |
+| Key share              | 32 octets  | 32 octets   | 32 octets   |
 
 To instantiate `ML-KEM`, one must select a parameter set from the column "ML-KEM" of {{tab-mlkem-artifacts}}.
 
@@ -715,13 +717,15 @@ The secret key, as well as both values `R` and `S` of the signature MUST each be
 
 The following table describes the ECDSA parameters and artifact lengths:
 
-{: title="ECDSA parameters and artifact lengths in octets" #tab-ecdsa-artifacts}
-Algorithm ID reference                                      | Curve           | Field size | Public key | Secret key | Signature value R | Signature value S
----------------------------------------:                    | --------------- | ---------- | ---------- | ---------- | ----------------- | -----------------
-TBD (ML-DSA-44+ECDSA-NIST-P-256)                            | NIST P-256      | 32         | 65         | 32         | 32                | 32
-TBD (ML-DSA-65+ECDSA-NIST-P-384,ML-DSA-87+ECDSA-NIST-P-384) | NIST P-384      | 48         | 97         | 48         | 48                | 48
-TBD (ML-DSA-65+ECDSA-brainpoolP256r1)                       | brainpoolP256r1 | 32         | 65         | 32         | 32                | 32
-TBD (ML-DSA-87+ECDSA-brainpoolP384r1)                       | brainpoolP384r1 | 48         | 97         | 48         | 48                | 48
+{: title="ECDSA parameters and artifact lengths" #tab-ecdsa-artifacts}
+|                      | NIST-P-256                       | NIST P-384                                                 | brainpoolP256r1                       | brainpoolP384r1                       |
+---------------------: | -------------------------------- | ---------------------------------------------------------- | ------------------------------------- | ------------------------------------- |
+Algorithm ID reference | TBD (ML-DSA-44+ECDSA-NIST-P-256) | TBD (ML-DSA-65+ECDSA-NIST-P-384,ML-DSA-87+ECDSA-NIST-P-384 | TBD (ML-DSA-65+ECDSA-brainpoolP256r1) | TBD (ML-DSA-87+ECDSA-brainpoolP384r1) |
+Field size             | 32 octets                        | 48 octets                                                  | 32 octets                             | 48 octets                             |
+Public key             | 65 octets                        | 97 octets                                                  | 65 octets                             | 97 octets                             |
+Secret key             | 32 octets                        | 48 octets                                                  | 32 octets                             | 48 octets                             |
+Signature value R      | 32 octets                        | 48 octets                                                  | 32 octets                             | 48 octets                             |
+Signature value S      | 32 octets                        | 48 octets                                                  | 32 octets                             | 48 octets                             |
 
 ### ML-DSA signatures {#mldsa-signature}
 
@@ -740,12 +744,13 @@ That is, to verify with ML-DSA the following operation is defined:
 ML-DSA has the parametrization with the corresponding artifact lengths in octets as given in {{tab-mldsa-artifacts}}.
 All artifacts are encoded as defined in [FIPS-204].
 
-{: title="ML-DSA parameters and artifact lengths in octets" #tab-mldsa-artifacts}
-Algorithm ID reference  | ML-DSA    | Public key  | Secret key | Signature value
-----------------------: | --------- | ----------- | ---------- | ---------------
-TBD                     | ML-DSA-44 | 1312        | 32         | 2420
-TBD                     | ML-DSA-65 | 1952        | 32         | 3309
-TBD                     | ML-DSA-87 | 2592        | 32         | 4627
+{: title="ML-DSA parameters and artifact lengths" #tab-mldsa-artifacts}
+|                        | ML-DSA-44   | ML-DSA-65   | ML-DSA-87   |
+|------------------------| ----------- | ----------- | ----------- |
+| Algorithm ID reference | TBD         | TBD         | TBD         |
+| Public key             | 1312 octets | 1952 octets | 2592 octets |
+| Secret key             | 32 octets   | 32 octets   | 32 octets   |
+| Signature              | 2420 octets | 3309 octets | 4627 octets |
 
 ## Composite Signature Schemes with ML-DSA {#ecc-mldsa}
 
