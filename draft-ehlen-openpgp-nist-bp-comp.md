@@ -399,7 +399,7 @@ Furthermore, when performing the explicitly listed operations in {{ecdh-kem}} it
 
 # Supported Public Key Algorithms
 
-This section specifies the composite ML-KEM + ECDH and ML-DSA+ECDSA schemes.
+This section specifies the composite ML-KEM + ECDH and ML-DSA + ECDSA schemes.
 All of these schemes are fully specified via their algorithm ID, i.e., they are not parametrized.
 
 ## Algorithm Specifications
@@ -445,7 +445,7 @@ This is achieved via KEM combination, i.e. both key encapsulations/decapsulation
 
 ## Composite Signatures
 
-The ML-DSA+ECDSA signature consists of independent ML-DSA and ECC signatures, and an implementation MUST successfully validate both signatures to state that the ML-DSA+ECDSA signature is valid.
+The ML-DSA + ECDSA signature consists of independent ML-DSA and ECC signatures, and an implementation MUST successfully validate both signatures to state that the ML-DSA + ECDSA signature is valid.
 
 ## Key Version Binding
 
@@ -758,7 +758,7 @@ For ECC this is done following the relative specification in {{SP800-186}} or {{
 ### Signature Generation
 
 
-To sign a message `M` with ML-DSA+ECDSA the following sequence of operations has to be performed:
+To sign a message `M` with ML-DSA + ECDSA the following sequence of operations has to be performed:
 
  1. Generate `dataDigest` according to {{?RFC9580}}, Section 5.2.4
 
@@ -771,13 +771,13 @@ To sign a message `M` with ML-DSA+ECDSA the following sequence of operations has
 ### Signature Verification
 
 
-To verify an ML-DSA+ECDSA signature the following sequence of operations has to be performed:
+To verify an ML-DSA + ECDSA signature the following sequence of operations has to be performed:
 
  1. Verify the ECDSA signature with `ECDSA.Verify()` from {{ecdsa-signature}}
 
  2. Verify the ML-DSA signature with `ML-DSA.Verify()` from {{mldsa-signature}}
 
-As specified in {{composite-signatures}} an implementation MUST validate both signatures, i.e. ECDSA and ML-DSA, successfully to state that a composite ML-DSA+ECDSA signature is valid.
+As specified in {{composite-signatures}} an implementation MUST validate both signatures, i.e. ECDSA and ML-DSA, successfully to state that a composite ML-DSA + ECDSA signature is valid.
 
 ## Packet Specifications
 
@@ -785,7 +785,7 @@ As specified in {{composite-signatures}} an implementation MUST validate both si
 
 The composite ML-DSA + ECDSA schemes MUST be used only with v6 signatures, as defined in [RFC9580], or newer versions defined by updates of that document.
 
-The algorithm-specific v6 signature parameters for ML-DSA+ECDSA signatures consist of:
+The algorithm-specific v6 signature parameters for ML-DSA + ECDSA signatures consist of:
 
  - A fixed-length octet string of the big-endian encoded ECDSA value `R`, whose length depends on the algorithm ID as specified in {{tab-ecdsa-artifacts}}.
 
@@ -798,11 +798,11 @@ A verifying implementation MUST reject any composite ML-DSA + ECDSA signature th
 
 ### Key Material Packets
 
-The composite ML-DSA+ECDSA schemes MUST be used only with v6 keys, as defined in [RFC9580], or newer versions defined by updates of that document.
+The composite ML-DSA + ECDSA schemes MUST be used only with v6 keys, as defined in [RFC9580], or newer versions defined by updates of that document.
 
 #### Public Key Packets (Packet Type IDs 6 and 14)
 
-The algorithm-specific public key for ML-DSA+ECDSA keys is this series of values:
+The algorithm-specific public key for ML-DSA + ECDSA keys is this series of values:
 
  - A fixed-length octet string representing the ECDSA public key in SEC1 format, as specified in section {{sec1-format}} and with length specified in {{tab-ecdsa-artifacts}}.
 
@@ -810,7 +810,7 @@ The algorithm-specific public key for ML-DSA+ECDSA keys is this series of values
 
 #### Secret Key Packets (Packet Type IDs 5 and 7)
 
-The algorithm-specific secret key for ML-DSA+ECDSA keys is this series of values:
+The algorithm-specific secret key for ML-DSA + ECDSA keys is this series of values:
 
  - A fixed-length octet string representing the ECDSA secret key as a big-endian encoded integer, whose length depends on the algorithm used as specified in {{tab-ecdsa-artifacts}}.
 
