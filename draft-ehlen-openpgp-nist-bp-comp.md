@@ -400,7 +400,7 @@ Furthermore, when performing the explicitly listed operations in {{ecdh-kem}} it
 # Supported Public Key Algorithms
 
 This section specifies the composite ML-KEM + ECDH and ML-DSA + ECDSA schemes.
-All of these schemes are fully specified via their algorithm ID, i.e., they are not parametrized.
+All of these schemes are fully specified via their algorithm ID, that is, they are not parametrized.
 
 ## Algorithm Specifications
 
