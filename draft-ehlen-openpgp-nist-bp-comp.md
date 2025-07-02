@@ -399,7 +399,7 @@ Furthermore, when performing the explicitly listed operations in {{ecdh-kem}} it
 
 # Supported Public Key Algorithms
 
-This section specifies the composite ML-KEM+ECDH and ML-DSA+ECDSA schemes.
+This section specifies the composite ML-KEM + ECDH and ML-DSA+ECDSA schemes.
 All of these schemes are fully specified via their algorithm ID, i.e., they are not parametrized.
 
 ## Algorithm Specifications
@@ -440,7 +440,7 @@ This draft will not be sent to IANA without every listed algorithm having a non-
 
 ## Composite KEMs
 
-The ML-KEM+ECDH public-key encryption involves both the ML-KEM and an ECC-based KEM in an a priori non-separable manner.
+The ML-KEM + ECDH public-key encryption involves both the ML-KEM and an ECC-based KEM in an a priori non-separable manner.
 This is achieved via KEM combination, i.e. both key encapsulations/decapsulations are performed in parallel, and the resulting key shares are fed into a key combiner to produce a single shared secret for message encryption.
 
 ## Composite Signatures
@@ -562,9 +562,9 @@ The procedure to perform `ML-KEM.Decaps()` is as follows:
 
 ## Composite Encryption Schemes with ML-KEM {#ecc-mlkem}
 
-{{kem-alg-specs}} specifies the following ML-KEM+ECDH-KEM composite public-key encryption schemes:
+{{kem-alg-specs}} specifies the following ML-KEM + ECDH composite public-key encryption schemes:
 
-{: title="ML-KEM+ECDH composite schemes" #tab-mlkem-ecc-composite}
+{: title="ML-KEM + ECDH composite schemes" #tab-mlkem-ecc-composite}
 Algorithm ID reference                    | ML-KEM       |  ECDH-KEM curve
 ----------------------------------------: | ------------ |  --------------
 TBD (ML-KEM-512+ECDH-NIST-P-256)          | ML-KEM-512   |  NIST P-256
@@ -573,7 +573,7 @@ TBD (ML-KEM-1024+ECDH-NIST-P-384)         | ML-KEM-1024  |  NIST P-384
 TBD (ML-KEM-768+ECDH-brainpoolP256r1)     | ML-KEM-768   |  brainpoolP256r1
 TBD (ML-KEM-1024+ECDH-brainpoolP384r1)    | ML-KEM-1024  |  brainpoolP384r1
 
-The ML-KEM+ECDH composite public-key encryption schemes are built according to the following principal design:
+The ML-KEM + ECDH composite public-key encryption schemes are built according to the following principal design:
 
  - The ML-KEM encapsulation algorithm is invoked to create an ML-KEM ciphertext together with an ML-KEM symmetric key share.
 
@@ -597,7 +597,7 @@ For ECC this is done following the relative specification in {{SP800-186}} or {{
 
 ### Encryption procedure {#ecc-mlkem-encryption}
 
-The procedure to perform public-key encryption with an ML-KEM+ECDH composite scheme is as follows:
+The procedure to perform public-key encryption with an ML-KEM + ECDH composite scheme is as follows:
 
  1. Take the recipient's authenticated public-key packet `pkComposite` and `sessionKey` as input
 
@@ -619,7 +619,7 @@ The procedure to perform public-key encryption with an ML-KEM+ECDH composite sch
 
 ### Decryption procedure
 
-The procedure to perform public-key decryption with an ML-KEM+ECDH composite scheme is as follows:
+The procedure to perform public-key decryption with an ML-KEM + ECDH composite scheme is as follows:
 
  1. Take the matching PKESK and own secret key packet as input
 
@@ -659,7 +659,7 @@ The algorithm-specific fields consists of the output of the encryption procedure
 
  - The wrapped session key represented as an octet string.
 
-Note that like in the case of the algorithms X25519 and X448 specified in {{I-D.ietf-openpgp-crypto-refresh}}, for the ML-KEM+ECDH composite schemes, in the case of a v3 PKESK packet, the symmetric algorithm identifier is not encrypted.
+Note that like in the case of the algorithms X25519 and X448 specified in {{I-D.ietf-openpgp-crypto-refresh}}, for the ML-KEM + ECDH composite schemes, in the case of a v3 PKESK packet, the symmetric algorithm identifier is not encrypted.
 Instead, it is placed in plaintext after the `mlkemCipherText` and before the length octet preceding the wrapped session key.
 In the case of v3 PKESK packets for ML-KEM composite schemes, the symmetric algorithm used MUST be AES-128, AES-192 or AES-256 (algorithm ID 7, 8 or 9).
 
@@ -832,7 +832,7 @@ TBD
 # IANA Considerations
 
 IANA is requested to add the algorithm IDs defined in {{iana-pubkey-algos}} to the existing registry `OpenPGP Public Key Algorithms`.
-The field specifications enclosed in brackets for the ML-KEM+ECDH composite algorithms denote fields that are only conditionally contained in the data structure.
+The field specifications enclosed in brackets for the ML-KEM + ECDH composite algorithms denote fields that are only conditionally contained in the data structure.
 
 \[Note: Once the working group has agreed on the actual algorithm choice, the following table with the requested IANA updates will be filled out.\]
 
