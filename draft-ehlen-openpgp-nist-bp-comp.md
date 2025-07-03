@@ -864,9 +864,15 @@ The algorithm-specific secret key for ML-DSA+ECDSA keys is this series of values
 
 # Security Considerations
 
-The following security considerations given in {{draft-ietf-openpgp-pqc-12}} equally apply to this document: the security aspects of composite signatures (Section 9.1 in {{draft-ietf-openpgp-pqc-12}}); the arguments for the security
-features of the KEM combiner given in Section 9.2 of {{draft-ietf-openpgp-pqc-12}}, as also the NIST and Brainpool curves represent nominal groups according to {{ABH+21}}; the considerations regarding domain separartion and context binding
-for the KEM combiner (Section 9.2.1 in {{draft-ietf-openpgp-pqc-12}}); the use of the hedged variant of ML-DSA (Section 9.3 in {{draft-ietf-openpgp-pqc-12}}); the minimum digest size for PQ/T signatures (Section 9.4 in {{draft-ietf-openpgp-pqc-12}}); the use of symmetric encryption in SEIPD packets (Section 9.5 in {{draft-ietf-openpgp-pqc-12}}) and key generation for composite schemes (Section 9.6 in {{draft-ietf-openpgp-pqc-12}}).
+The following security considerations given in {{draft-ietf-openpgp-pqc-12}} equally apply to this document: 
+
+- the security aspects of composite signatures (Section 9.1 in {{draft-ietf-openpgp-pqc-12}}), 
+- the arguments for the security features of the KEM combiner given in Section 9.2 of {{draft-ietf-openpgp-pqc-12}}, as also the NIST and Brainpool curves represent nominal groups according to {{ABH+21}},
+- the considerations regarding domain separartion and context binding for the KEM combiner (Section 9.2.1 in {{draft-ietf-openpgp-pqc-12}}),
+- the use of the hedged variant of ML-DSA (Section 9.3 in {{draft-ietf-openpgp-pqc-12}}),
+- the minimum digest size for PQ/T signatures (Section 9.4 in {{draft-ietf-openpgp-pqc-12}}),
+- the use of symmetric encryption in SEIPD packets (Section 9.5 in {{draft-ietf-openpgp-pqc-12}}),
+- and key generation for composite schemes (Section 9.6 in {{draft-ietf-openpgp-pqc-12}}).
 
 When implementing or using of the algorithms defined in this specification, the above referenced security considerations should be noted.
 
