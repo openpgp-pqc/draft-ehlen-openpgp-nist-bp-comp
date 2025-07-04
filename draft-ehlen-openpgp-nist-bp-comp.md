@@ -79,6 +79,24 @@ normative:
         name: Aron Wussler
     date: 2025
 
+  draft-ietf-openpgp-pqc-12:
+    target: https://www.ietf.org/archive/id/draft-ietf-openpgp-pqc-12.html
+    title: Post-Quantum Cryptography in OpenPGP (draft-ietf-openpgp-pqc-12)
+    author:
+      -
+        ins: S. Kousidis
+        name: Stavros Kousidis
+      -
+        ins: J. Roth
+        name: Johannes Roth
+      -
+        ins: F. Strenzke
+        name: Falko Strenzke
+      -
+        ins: A. Wussler
+        name: Aron Wussler
+    date: 2025
+
 
 informative:
 
@@ -324,6 +342,31 @@ informative:
         ins: V. Shoup
         name: Victor Shoup
     date: 2003
+
+
+  ABH+21:
+    target: https://doi.org/10.1007/978-3-030-77870-5_4
+    title: Analysing the HPKE Standard
+    author:
+      -
+        ins: J. Alwen
+        name: Joel Alwen
+      -
+        ins: B. Blanchet
+        name: Bruno Blanchet
+      -
+        ins: E. Hauck
+        name: Eduard Hauck
+      -
+        ins: E. Kiltz
+        name: Eike Kiltz
+      -
+        ins: B. Lipp
+        name: Benjamin Lipp
+      -
+        ins: D. Riepel
+        name: Doreen Riepl
+    date: 2021
 
 
 --- abstract
@@ -822,9 +865,17 @@ The algorithm-specific secret key for ML-DSA + ECDSA keys is this series of valu
 
 # Security Considerations
 
-TBD
+The following security considerations given in {{draft-ietf-openpgp-pqc-12}} equally apply to this document:
 
+- the security aspects of composite signatures (Section 9.1 in {{draft-ietf-openpgp-pqc-12}}),
+- the arguments for the security features of the KEM combiner given in Section 9.2 of {{draft-ietf-openpgp-pqc-12}}, as also the NIST and Brainpool curves represent nominal groups according to {{ABH+21}},
+- the considerations regarding domain separartion and context binding for the KEM combiner (Section 9.2.1 in {{draft-ietf-openpgp-pqc-12}}),
+- the use of the hedged variant of ML-DSA (Section 9.3 in {{draft-ietf-openpgp-pqc-12}}),
+- the minimum digest size for PQ/T signatures (Section 9.4 in {{draft-ietf-openpgp-pqc-12}}),
+- the use of symmetric encryption in SEIPD packets (Section 9.5 in {{draft-ietf-openpgp-pqc-12}}),
+- and key generation for composite schemes (Section 9.6 in {{draft-ietf-openpgp-pqc-12}}).
 
+When implementing or using any of the algorithms defined in this specification, the above referenced security considerations should be noted.
 
 # IANA Considerations
 
