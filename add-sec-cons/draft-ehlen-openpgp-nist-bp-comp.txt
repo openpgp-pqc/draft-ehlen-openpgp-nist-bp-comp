@@ -5,11 +5,11 @@
 Network Working Group                                            Q. Dang
 Internet-Draft                                                      NIST
 Intended status: Informational                                  S. Ehlen
-Expires: 3 January 2026                                              BSI
+Expires: 5 January 2026                                              BSI
                                                                  J. Roth
                                                              F. Strenzke
                                                                   MTG AG
-                                                             2 July 2025
+                                                             4 July 2025
 
 
   PQ/T Composite Schemes for OpenPGP using NIST and Brainpool Elliptic
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 January 2026.
+   This Internet-Draft will expire on 5 January 2026.
 
 Copyright Notice
 
@@ -907,20 +907,31 @@ Table of Contents
 7.  Security Considerations
 
    The following security considerations given in
-   [draft-ietf-openpgp-pqc-12] equally apply to this document: the
-   security aspects of composite signatures (Section 9.1 in
-   [draft-ietf-openpgp-pqc-12]); the arguments for the security features
-   of the KEM combiner given in Section 9.2 of
-   [draft-ietf-openpgp-pqc-12], as also the NIST and Brainpool curves
-   represent nominal groups according to [ABH_21]; the considerations
-   regarding domain separartion and context binding for the KEM combiner
-   (Section 9.2.1 in [draft-ietf-openpgp-pqc-12]); the use of the hedged
-   variant of ML-DSA (Section 9.3 in [draft-ietf-openpgp-pqc-12]); the
-   minimum digest size for PQ/T signatures (Section 9.4 in
-   [draft-ietf-openpgp-pqc-12]); the use of symmetric encryption in
-   SEIPD packets (Section 9.5 in [draft-ietf-openpgp-pqc-12]) and key
-   generation for composite schemes (Section 9.6 in
-   [draft-ietf-openpgp-pqc-12]).
+   [draft-ietf-openpgp-pqc-12] equally apply to this document:
+
+   *  the security aspects of composite signatures (Section 9.1 in
+      [draft-ietf-openpgp-pqc-12]),
+
+   *  the arguments for the security features of the KEM combiner given
+      in Section 9.2 of [draft-ietf-openpgp-pqc-12], as also the NIST
+      and Brainpool curves represent nominal groups according to
+      [ABH_21],
+
+   *  the considerations regarding domain separartion and context
+      binding for the KEM combiner (Section 9.2.1 in
+      [draft-ietf-openpgp-pqc-12]),
+
+   *  the use of the hedged variant of ML-DSA (Section 9.3 in
+      [draft-ietf-openpgp-pqc-12]),
+
+   *  the minimum digest size for PQ/T signatures (Section 9.4 in
+      [draft-ietf-openpgp-pqc-12]),
+
+   *  the use of symmetric encryption in SEIPD packets (Section 9.5 in
+      [draft-ietf-openpgp-pqc-12]),
+
+   *  and key generation for composite schemes (Section 9.6 in
+      [draft-ietf-openpgp-pqc-12]).
 
    When implementing or using of the algorithms defined in this
    specification, the above referenced security considerations should be

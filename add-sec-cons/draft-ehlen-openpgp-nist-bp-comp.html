@@ -1051,7 +1051,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Dang, et al.</td>
-<td class="center">Expires 3 January 2026</td>
+<td class="center">Expires 5 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ehlen-openpgp-nist-bp-comp-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-07-02" class="published">2 July 2025</time>
+<time datetime="2025-07-04" class="published">4 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-01-03">3 January 2026</time></dd>
+<dd class="expires"><time datetime="2026-01-05">5 January 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1130,7 +1130,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 3 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2472,10 +2472,31 @@ For ECC this is done following the relative specification in <span>[<a href="#SP
       <h2 id="name-security-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-7-1">The following security considerations given in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span> equally apply to this document: the security aspects of composite signatures (Section 9.1 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>); the arguments for the security
-features of the KEM combiner given in Section 9.2 of <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>, as also the NIST and Brainpool curves represent nominal groups according to <span>[<a href="#ABH_21" class="cite xref">ABH_21</a>]</span>; the considerations regarding domain separartion and context binding
-for the KEM combiner (Section 9.2.1 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>); the use of the hedged variant of ML-DSA (Section 9.3 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>); the minimum digest size for PQ/T signatures (Section 9.4 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>); the use of symmetric encryption in SEIPD packets (Section 9.5 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>) and key generation for composite schemes (Section 9.6 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>).<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">When implementing or using of the algorithms defined in this specification, the above referenced security considerations should be noted.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-1">The following security considerations given in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span> equally apply to this document:<a href="#section-7-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-7-2.1">
+          <p id="section-7-2.1.1">the security aspects of composite signatures (Section 9.1 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>),<a href="#section-7-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-2.2">
+          <p id="section-7-2.2.1">the arguments for the security features of the KEM combiner given in Section 9.2 of <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>, as also the NIST and Brainpool curves represent nominal groups according to <span>[<a href="#ABH_21" class="cite xref">ABH_21</a>]</span>,<a href="#section-7-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-2.3">
+          <p id="section-7-2.3.1">the considerations regarding domain separartion and context binding for the KEM combiner (Section 9.2.1 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>),<a href="#section-7-2.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-2.4">
+          <p id="section-7-2.4.1">the use of the hedged variant of ML-DSA (Section 9.3 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>),<a href="#section-7-2.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-2.5">
+          <p id="section-7-2.5.1">the minimum digest size for PQ/T signatures (Section 9.4 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>),<a href="#section-7-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-2.6">
+          <p id="section-7-2.6.1">the use of symmetric encryption in SEIPD packets (Section 9.5 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>),<a href="#section-7-2.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-7-2.7">
+          <p id="section-7-2.7.1">and key generation for composite schemes (Section 9.6 in <span>[<a href="#draft-ietf-openpgp-pqc-12" class="cite xref">draft-ietf-openpgp-pqc-12</a>]</span>).<a href="#section-7-2.7.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-7-3">When implementing or using of the algorithms defined in this specification, the above referenced security considerations should be noted.<a href="#section-7-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
