@@ -118,6 +118,8 @@ Table of Contents
    7.  Security Considerations
    8.  IANA Considerations
    9.  Changelog
+     9.1.  draft-ehlen-openpgp-nist-bp-comp-02
+     9.2.  draft-ehlen-openpgp-nist-bp-comp-01
    10. Contributors
    11. References
      11.1.  Normative References
@@ -969,8 +971,8 @@ Table of Contents
    |   |P-256          | ECDSA| ECDSA|signature|            |         |
    |   |               |public|secret|Table 7 ,|            |         |
    |   |               |   key|   key|     2420|            |         |
-   |   |               | Table| Table|   octets|            |         |
-   |   |               |    7,| 7, 32|ML-DSA-44|            |         |
+   |   |               |(Table|(Table|   octets|            |         |
+   |   |               |   7),|7), 32|ML-DSA-44|            |         |
    |   |               |  1312|octets|signature|            |         |
    |   |               |octets|   ML-|(Table 8)|            |         |
    |   |               |   ML-|DSA-44|         |            |         |
@@ -985,8 +987,8 @@ Table of Contents
    |   |P-384          | ECDSA| ECDSA|signature|            |         |
    |   |               |public|secret|Table 7 ,|            |         |
    |   |               |   key|   key|     3309|            |         |
-   |   |               | Table| Table|   octets|            |         |
-   |   |               |    7,| 7, 32|ML-DSA-65|            |         |
+   |   |               |(Table|(Table|   octets|            |         |
+   |   |               |   7),|7), 32|ML-DSA-65|            |         |
    |   |               |  1952|octets|signature|            |         |
    |   |               |octets|   ML-|(Table 8)|            |         |
    |   |               |   ML-|DSA-65|         |            |         |
@@ -1001,8 +1003,8 @@ Table of Contents
    |   |P-384          | ECDSA| ECDSA|signature|            |         |
    |   |               |public|secret|Table 7 ,|            |         |
    |   |               |   key|   key|     4627|            |         |
-   |   |               | Table| Table|   octets|            |         |
-   |   |               |    7,| 7, 32|ML-DSA-87|            |         |
+   |   |               |(Table|(Table|   octets|            |         |
+   |   |               |   7),|7), 32|ML-DSA-87|            |         |
    |   |               |  2592|octets|signature|            |         |
    |   |               |octets|   ML-|(Table 8)|            |         |
    |   |               |   ML-|DSA-87|         |            |         |
@@ -1017,8 +1019,8 @@ Table of Contents
    |   |brainpoolP256r1| ECDSA| ECDSA|signature|            |         |
    |   |               |public|secret|Table 7 ,|            |         |
    |   |               |   key|   key|     3309|            |         |
-   |   |               | Table| Table|   octets|            |         |
-   |   |               |    7,| 7, 32|ML-DSA-65|            |         |
+   |   |               |(Table|(Table|   octets|            |         |
+   |   |               |   7),|7), 32|ML-DSA-65|            |         |
    |   |               |  1952|octets|signature|            |         |
    |   |               |octets|   ML-|(Table 8)|            |         |
    |   |               |   ML-|DSA-65|         |            |         |
@@ -1033,8 +1035,8 @@ Table of Contents
    |   |brainpoolP384r1| ECDSA| ECDSA|signature|            |         |
    |   |               |public|secret|Table 7 ,|            |         |
    |   |               |   key|   key|     4627|            |         |
-   |   |               | Table| Table|   octets|            |         |
-   |   |               |    7,| 7, 32|ML-DSA-87|            |         |
+   |   |               |(Table|(Table|   octets|            |         |
+   |   |               |   7),|7), 32|ML-DSA-87|            |         |
    |   |               |  2592|octets|signature|            |         |
    |   |               |octets|   ML-|(Table 8)|            |         |
    |   |               |   ML-|DSA-87|         |            |         |
@@ -1045,96 +1047,96 @@ Table of Contents
    |   |               |    8)|      |         |            |         |
    +---+---------------+------+------+---------+------------+---------+
    |TBD|ML-KEM-        |    65|    32|      N/A|   65 octets|  Section|
-   |   |512+ECDH-NIST- |octets|octets|         |        ECDH|      6.2|
-   |   |P-256          | ECDSA| ECDSA|         | ciphertext,|         |
+   |   |512+ECDH-NIST- |octets|octets|         |        ECDH|      5.2|
+   |   |P-256          |  ECDH|  ECDH|         | ciphertext,|         |
    |   |               |public|secret|         |  768 octets|         |
    |   |               |   key|   key|         |  ML-KEM-512|         |
-   |   |               | Table| Table|         | ciphertext,|         |
-   |   |               |7, 800| 7, 64|         |     1 octet|         |
-   |   |               |octets|octets|         |   remaining|         |
-   |   |               |ML-KEM|ML-KEM|         |  length, [1|         |
-   |   |               |  -512|  -512|         |       octet|         |
-   |   |               |public|secret|         |algorithm ID|         |
-   |   |               |   key|   key|         |  in case of|         |
-   |   |               |(Table|(Table|         |v3 PKESK,] n|         |
-   |   |               |    8)|    8)|         |      octets|         |
-   |   |               |      |      |         |     wrapped|         |
+   |   |               |(Table|(Table|         | ciphertext,|         |
+   |   |               |   7),|7), 64|         |     1 octet|         |
+   |   |               |   800|octets|         |   remaining|         |
+   |   |               |octets|ML-KEM|         |  length, [1|         |
+   |   |               |ML-KEM|  -512|         |       octet|         |
+   |   |               |  -512|secret|         |algorithm ID|         |
+   |   |               |public|   key|         |  in case of|         |
+   |   |               |   key|(Table|         |v3 PKESK,] n|         |
+   |   |               |(Table|    5)|         |      octets|         |
+   |   |               |    5)|      |         |     wrapped|         |
    |   |               |      |      |         | session key|         |
    |   |               |      |      |         |    (Section|         |
    |   |               |      |      |         |      5.3.1)|         |
    +---+---------------+------+------+---------+------------+---------+
    |TBD|ML-KEM-        |    97|    48|      N/A|   97 octets|  Section|
-   |   |768+ECDH-NIST- |octets|octets|         |        ECDH|      6.2|
-   |   |P-384          | ECDSA| ECDSA|         | ciphertext,|         |
+   |   |768+ECDH-NIST- |octets|octets|         |        ECDH|      5.2|
+   |   |P-384          |  ECDH|  ECDH|         | ciphertext,|         |
    |   |               |public|secret|         | 1088 octets|         |
    |   |               |   key|   key|         |  ML-KEM-768|         |
-   |   |               | Table| Table|         | ciphertext,|         |
-   |   |               |    7,| 7, 64|         |     1 octet|         |
+   |   |               |(Table|(Table|         | ciphertext,|         |
+   |   |               |   7),|7), 64|         |     1 octet|         |
    |   |               |  1184|octets|         |   remaining|         |
    |   |               |octets|ML-KEM|         |  length, [1|         |
    |   |               |ML-KEM|  -768|         |       octet|         |
    |   |               |  -768|secret|         |algorithm ID|         |
    |   |               |public|   key|         |  in case of|         |
    |   |               |   key|(Table|         |v3 PKESK,] n|         |
-   |   |               |(Table|    8)|         |      octets|         |
-   |   |               |    8)|      |         |     wrapped|         |
+   |   |               |(Table|    5)|         |      octets|         |
+   |   |               |    5)|      |         |     wrapped|         |
    |   |               |      |      |         | session key|         |
    |   |               |      |      |         |    (Section|         |
    |   |               |      |      |         |      5.3.1)|         |
    +---+---------------+------+------+---------+------------+---------+
    |TBD|ML-KEM-        |    97|    48|      N/A|   97 octets|  Section|
-   |   |1024+ECDH-NIST-|octets|octets|         |        ECDH|      6.2|
-   |   |P-384          | ECDSA| ECDSA|         | ciphertext,|         |
+   |   |1024+ECDH-NIST-|octets|octets|         |        ECDH|      5.2|
+   |   |P-384          |  ECDH|  ECDH|         | ciphertext,|         |
    |   |               |public|secret|         | 1568 octets|         |
    |   |               |   key|   key|         | ML-KEM-1024|         |
-   |   |               | Table| Table|         | ciphertext,|         |
-   |   |               |    7,| 7, 64|         |     1 octet|         |
+   |   |               |(Table|(Table|         | ciphertext,|         |
+   |   |               |   7),|7), 64|         |     1 octet|         |
    |   |               |  1568|octets|         |   remaining|         |
    |   |               |octets|ML-KEM|         |  length, [1|         |
    |   |               |ML-KEM| -1024|         |       octet|         |
    |   |               |  -768|secret|         |algorithm ID|         |
    |   |               |public|   key|         |  in case of|         |
    |   |               |   key|(Table|         |v3 PKESK,] n|         |
-   |   |               |(Table|    8)|         |      octets|         |
-   |   |               |    8)|      |         |     wrapped|         |
+   |   |               |(Table|    5)|         |      octets|         |
+   |   |               |    5)|      |         |     wrapped|         |
    |   |               |      |      |         | session key|         |
    |   |               |      |      |         |    (Section|         |
    |   |               |      |      |         |      5.3.1)|         |
    +---+---------------+------+------+---------+------------+---------+
    |TBD|ML-KEM-        |    65|    32|      N/A|   65 octets|  Section|
-   |   |768+ECDH-      |octets|octets|         |        ECDH|      6.2|
-   |   |brainpoolP256r1| ECDSA| ECDSA|         | ciphertext,|         |
+   |   |768+ECDH-      |octets|octets|         |        ECDH|      5.2|
+   |   |brainpoolP256r1|  ECDH|  ECDH|         | ciphertext,|         |
    |   |               |public|secret|         | 1088 octets|         |
    |   |               |   key|   key|         |  ML-KEM-768|         |
-   |   |               | Table| Table|         | ciphertext,|         |
-   |   |               |    7,| 7, 64|         |     1 octet|         |
+   |   |               |(Table|(Table|         | ciphertext,|         |
+   |   |               |   7),|7), 64|         |     1 octet|         |
    |   |               |  1184|octets|         |   remaining|         |
    |   |               |octets|ML-KEM|         |  length, [1|         |
    |   |               |ML-KEM|  -768|         |       octet|         |
    |   |               |  -768|secret|         |algorithm ID|         |
    |   |               |public|   key|         |  in case of|         |
    |   |               |   key|(Table|         |v3 PKESK,] n|         |
-   |   |               |(Table|    8)|         |      octets|         |
-   |   |               |    8)|      |         |     wrapped|         |
+   |   |               |(Table|    5)|         |      octets|         |
+   |   |               |    5)|      |         |     wrapped|         |
    |   |               |      |      |         | session key|         |
    |   |               |      |      |         |    (Section|         |
    |   |               |      |      |         |      5.3.1)|         |
    +---+---------------+------+------+---------+------------+---------+
    |TBD|ML-KEM-        |    97|    48|      N/A|   97 octets|  Section|
-   |   |1024+ECDH-     |octets|octets|         |        ECDH|      6.2|
-   |   |brainpoolP384r1| ECDSA| ECDSA|         | ciphertext,|         |
+   |   |1024+ECDH-     |octets|octets|         |        ECDH|      5.2|
+   |   |brainpoolP384r1|  ECDH|  ECDH|         | ciphertext,|         |
    |   |               |public|secret|         | 1568 octets|         |
    |   |               |   key|   key|         | ML-KEM-1024|         |
-   |   |               | Table| Table|         | ciphertext,|         |
-   |   |               |    7,| 7, 64|         |     1 octet|         |
+   |   |               |(Table|(Table|         | ciphertext,|         |
+   |   |               |   7),|7), 64|         |     1 octet|         |
    |   |               |  1568|octets|         |   remaining|         |
    |   |               |octets|ML-KEM|         |  length, [1|         |
    |   |               |ML-KEM| -1024|         |       octet|         |
    |   |               |  -768|secret|         |algorithm ID|         |
    |   |               |public|   key|         |  in case of|         |
    |   |               |   key|(Table|         |v3 PKESK,] n|         |
-   |   |               |(Table|    8)|         |      octets|         |
-   |   |               |    8)|      |         |     wrapped|         |
+   |   |               |(Table|    5)|         |      octets|         |
+   |   |               |    5)|      |         |     wrapped|         |
    |   |               |      |      |         | session key|         |
    |   |               |      |      |         |    (Section|         |
    |   |               |      |      |         |      5.3.1)|         |
@@ -1150,6 +1152,25 @@ Table of Contents
 
 9.  Changelog
 
+   This section gives the history of changes in the respective document
+   versions.  The order is newest first.
+
+9.1.  draft-ehlen-openpgp-nist-bp-comp-02
+
+   *  Completed the IANA table.
+
+   *  Added "Security Considerations" section.
+
+   *  Alignment of various technical details to draft-ietf-openpgp-pqc-
+      12.
+
+   *  Various editorial alignments to draft-ietf-openpgp-pqc-12.
+
+9.2.  draft-ehlen-openpgp-nist-bp-comp-01
+
+   *  Replaced the explicit description of the KEM combiner with a
+      reference to draft-ietf-openpgp-pqc.
+
 10.  Contributors
 
    Stavros Kousidis
@@ -1163,13 +1184,6 @@ Table of Contents
               "Post-Quantum Cryptography in OpenPGP (draft-ietf-openpgp-
               pqc-12)", 2025, <https://www.ietf.org/archive/id/draft-
               ietf-openpgp-pqc-12.html>.
-
-   [I-D.ietf-openpgp-crypto-refresh]
-              Wouters, P., Huigens, D., Winter, J., and N. Yutaka,
-              "OpenPGP", Work in Progress, Internet-Draft, draft-ietf-
-              openpgp-crypto-refresh-13, 4 January 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-openpgp-
-              crypto-refresh-13>.
 
    [RFC3394]  Schaad, J. and R. Housley, "Advanced Encryption Standard
               (AES) Key Wrap Algorithm", RFC 3394, DOI 10.17487/RFC3394,
@@ -1203,12 +1217,6 @@ Table of Contents
               Public-Key Encryption Schemes Secure against Adaptive
               Chosen Ciphertext Attack", 2003,
               <https://doi.org/10.1137/S0097539702403773>.
-
-   [draft-driscoll-pqt-hybrid-terminology]
-              Driscoll, F., "Terminology for Post-Quantum Traditional
-              Hybrid Schemes", March 2023,
-              <https://datatracker.ietf.org/doc/html/draft-driscoll-pqt-
-              hybrid-terminology>.
 
    [FIPS-203] National Institute of Standards and Technology, "Module-
               Lattice-Based Key-Encapsulation Mechanism Standard",
