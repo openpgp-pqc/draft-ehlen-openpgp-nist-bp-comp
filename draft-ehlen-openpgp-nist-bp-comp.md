@@ -864,7 +864,7 @@ The algorithm-specific secret key for ML-DSA+ECDSA keys is this series of values
 
 # Security Considerations
 
-The following security considerations given in {{draft-ietf-openpgp-pqc-12}} equally apply to this document: 
+The following security considerations given in {{draft-ietf-openpgp-pqc-12}} equally apply to this document:
 
 - the security aspects of composite signatures (Section 9.1 in {{draft-ietf-openpgp-pqc-12}}), 
 - the arguments for the security features of the KEM combiner given in Section 9.2 of {{draft-ietf-openpgp-pqc-12}}, as also the NIST and Brainpool curves represent nominal groups according to {{ABH+21}},
