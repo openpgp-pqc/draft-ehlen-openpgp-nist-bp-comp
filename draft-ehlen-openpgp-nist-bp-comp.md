@@ -835,6 +835,18 @@ IANA is asked to add the following note to this registry:
 
 # Changelog
 
+This section gives the history of changes in the respective document versions. The order is newest first.
+
+## draft-ehlen-openpgp-nist-bp-comp-02
+
+- Completed the IANA table.
+- Added "Security Considerations" section.
+- Alignment of various technical details to draft-ietf-openpgp-pqc-12.
+- Various editorial alignments to draft-ietf-openpgp-pqc-12.
+
+## draft-ehlen-openpgp-nist-bp-comp-01
+
+- Replaced the explicit description of the KEM combiner with a reference to draft-ietf-openpgp-pqc.
 
 # Contributors
 Stavros Kousidis
