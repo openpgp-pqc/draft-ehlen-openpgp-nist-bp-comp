@@ -933,7 +933,7 @@ Table of Contents
    *  and key generation for composite schemes (Section 9.6 in
       [draft-ietf-openpgp-pqc-12]).
 
-   When implementing or using of the algorithms defined in this
+   When implementing or using any of the algorithms defined in this
    specification, the above referenced security considerations should be
    noted.
 
