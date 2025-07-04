@@ -874,7 +874,7 @@ The following security considerations given in {{draft-ietf-openpgp-pqc-12}} equ
 - the use of symmetric encryption in SEIPD packets (Section 9.5 in {{draft-ietf-openpgp-pqc-12}}),
 - and key generation for composite schemes (Section 9.6 in {{draft-ietf-openpgp-pqc-12}}).
 
-When implementing or using of the algorithms defined in this specification, the above referenced security considerations should be noted.
+When implementing or using any of the algorithms defined in this specification, the above referenced security considerations should be noted.
 
 # IANA Considerations
 
