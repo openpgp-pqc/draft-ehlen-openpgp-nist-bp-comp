@@ -365,7 +365,7 @@ This document defines PQ/T composite schemes based on ML-KEM and ML-DSA combined
 
 # Introduction
 
-This document extends [draft-ietf-openpgp-pqc-12], which introduces post-quantum cryptography in OpenPGP based on hybrid KEMs and digitial signatures by using ML-KEM and ML-DSA with ECC algorithms using the Edwards Curves defined in {{RFC8032}} and {{RFC7748}}. 
+This document extends [draft-ietf-openpgp-pqc-12], which introduces post-quantum cryptography in OpenPGP based on hybrid KEMs and digitial signatures by using ML-KEM and ML-DSA with ECC algorithms using the Edwards Curves defined in {{RFC8032}} and {{RFC7748}}.
 
 Due to their long-standing and wide deployment, there are well-tested, secure, and efficient implementations of ECDSA and ECDH with NIST-curves {{SP800-186}}. The same applies to Brainpool curves {{RFC5639}} which are recommended or required in certain regulatory domains, for instance in Germany {{TR-03111}}. The purpose of this document is to define PQ/T composite schemes based on ML-KEM and ML-DSA combined with ECDH and ECDSA using the NIST and Brainpool domain parameters for the OpenPGP protocol to support the users who would like to or have to use such hybrid KEMs and/or signatures with OpenPGP.
 
