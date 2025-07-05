@@ -1052,7 +1052,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Dang, et al.</td>
-<td class="center">Expires 5 January 2026</td>
+<td class="center">Expires 6 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1065,12 +1065,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ehlen-openpgp-nist-bp-comp-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-07-04" class="published">4 July 2025</time>
+<time datetime="2025-07-05" class="published">5 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-01-05">5 January 2026</time></dd>
+<dd class="expires"><time datetime="2026-01-06">6 January 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1135,7 +1135,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 5 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 6 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1997,36 +1997,16 @@ ECDH key generation follows the specification in <span>[<a href="#SP800-186" cla
           <h4 id="name-encryption-procedure">
 <a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-encryption-procedure" class="section-name selfRef">Encryption Procedure</a>
           </h4>
-<p id="section-5.2.3-1">The procedure to perform public-key encryption with an ML-KEM + ECDH composite scheme is as follows:<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.2.3-2">
-<li id="section-5.2.3-2.1">
-              <p id="section-5.2.3-2.1.1">Take the recipient's authenticated public-key packet <code>pkComposite</code> and <code>sessionKey</code> as input<a href="#section-5.2.3-2.1.1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-1">The procedure to perform public-key encryption with an ML-KEM + ECDH composite
+scheme is identical to the one described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-openpgp-pqc-12#section-4.2.3" class="relref">Section 4.2.3</a> of [<a href="#I-D.draft-ietf-openpgp-pqc" class="cite xref">I-D.draft-ietf-openpgp-pqc</a>]</span>, except that references are replaced as follows:<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2.3-2.1">
+              <p id="section-5.2.3-2.1.1">(Step 3) See <a href="#mlkem-ecc-key" class="auto internal xref">Section 5.3.2</a> in the present document.<a href="#section-5.2.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-5.2.3-2.2">
-              <p id="section-5.2.3-2.2.1">Parse the algorithm ID from <code>pkComposite</code> and set it as <code>algId</code><a href="#section-5.2.3-2.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-5.2.3-2.2">
+              <p id="section-5.2.3-2.2.1">(Step 4) See <a href="#tab-mlkem-ecc-composite" class="auto internal xref">Table 6</a> in the present document.<a href="#section-5.2.3-2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-5.2.3-2.3">
-              <p id="section-5.2.3-2.3.1">Extract the <code>ecdhPublicKey</code> and <code>mlkemPublicKey</code> component from the algorithm specific data encoded in <code>pkComposite</code> with the format specified in <a href="#mlkem-ecc-key" class="auto internal xref">Section 5.3.2</a>.<a href="#section-5.2.3-2.3.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.3-2.4">
-              <p id="section-5.2.3-2.4.1">Instantiate the ECDH-KEM and the ML-KEM depending on the algorithm ID according to <a href="#tab-mlkem-ecc-composite" class="auto internal xref">Table 6</a><a href="#section-5.2.3-2.4.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.3-2.5">
-              <p id="section-5.2.3-2.5.1">Compute <code>(ecdhCipherText, ecdhKeyShare) = ECDH-KEM.Encaps(ecdhPublicKey)</code><a href="#section-5.2.3-2.5.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.3-2.6">
-              <p id="section-5.2.3-2.6.1">Compute <code>(mlkemCipherText, mlkemKeyShare) = ML-KEM.Encaps(mlkemPublicKey)</code><a href="#section-5.2.3-2.6.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.3-2.7">
-              <p id="section-5.2.3-2.7.1">Compute <code>KEK = multiKeyCombine(mlkemKeyShare, ecdhKeyShare, ecdhCipherText, ecdhPublicKey, algId)</code> as defined in <a href="#kem-key-combiner" class="auto internal xref">Section 5.2.1</a><a href="#section-5.2.3-2.7.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.3-2.8">
-              <p id="section-5.2.3-2.8.1">Compute <code>C = AESKeyWrap(KEK, sessionKey)</code> with AES-256 as per <span>[<a href="#RFC3394" class="cite xref">RFC3394</a>]</span> that includes a 64 bit integrity check<a href="#section-5.2.3-2.8.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.3-2.9">
-              <p id="section-5.2.3-2.9.1">Output the algorithm specific part of the PKESK as <code>ecdhCipherText || mlkemCipherText || len(C, symAlgId) (|| symAlgId) || C</code>, where both <code>symAlgId</code> and <code>len(C, symAlgId)</code> are single octet fields, <code>symAlgId</code> denotes the symmetric algorithm ID used and is present only for a v3 PKESK, and <code>len(C, symAlgId)</code> denotes the combined octet length of the fields specified as the arguments.<a href="#section-5.2.3-2.9.1" class="pilcrow">¶</a></p>
-</li>
-          </ol>
+          </ul>
 </section>
 </div>
 <div id="decryption-procedure">
@@ -2034,42 +2014,19 @@ ECDH key generation follows the specification in <span>[<a href="#SP800-186" cla
           <h4 id="name-decryption-procedure">
 <a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-decryption-procedure" class="section-name selfRef">Decryption Procedure</a>
           </h4>
-<p id="section-5.2.4-1">The procedure to perform public-key decryption with an ML-KEM + ECDH composite scheme is as follows:<a href="#section-5.2.4-1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-5.2.4-2">
-<li id="section-5.2.4-2.1">
-              <p id="section-5.2.4-2.1.1">Take the matching PKESK and own secret key packet as input<a href="#section-5.2.4-2.1.1" class="pilcrow">¶</a></p>
+<p id="section-5.2.4-1">The procedure to perform public-key decryption with an ML-KEM + ECDH composite
+scheme is identical to the one described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-openpgp-pqc-12#section-4.2.4" class="relref">Section 4.2.4</a> of [<a href="#I-D.draft-ietf-openpgp-pqc" class="cite xref">I-D.draft-ietf-openpgp-pqc</a>]</span>, except that references are replaced as follows:<a href="#section-5.2.4-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5.2.4-2.1">
+              <p id="section-5.2.4-2.1.1">(Step 4) See <a href="#mlkem-ecc-key" class="auto internal xref">Section 5.3.2</a> in the present document.<a href="#section-5.2.4-2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-5.2.4-2.2">
-              <p id="section-5.2.4-2.2.1">From the PKESK extract the algorithm ID as <code>algId</code> and the wrapped session key as <code>encryptedKey</code><a href="#section-5.2.4-2.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-5.2.4-2.2">
+              <p id="section-5.2.4-2.2.1">(Step 5) See <a href="#tab-mlkem-ecc-composite" class="auto internal xref">Table 6</a> in the present document.<a href="#section-5.2.4-2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-5.2.4-2.3">
-              <p id="section-5.2.4-2.3.1">Check that the own and the extracted algorithm ID match<a href="#section-5.2.4-2.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-5.2.4-2.3">
+              <p id="section-5.2.4-2.3.1">(Step 6) See <a href="#ecc-mlkem-pkesk" class="auto internal xref">Section 5.3.1</a> in the present document.<a href="#section-5.2.4-2.3.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="section-5.2.4-2.4">
-              <p id="section-5.2.4-2.4.1">Parse the <code>ecdhSecretKey</code> and <code>mlkemSecretKey</code> from the algorithm specific data of the own secret key encoded in the format specified in <a href="#mlkem-ecc-key" class="auto internal xref">Section 5.3.2</a><a href="#section-5.2.4-2.4.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.4-2.5">
-              <p id="section-5.2.4-2.5.1">Instantiate the ECDH-KEM and the ML-KEM depending on the algorithm ID according to <a href="#tab-mlkem-ecc-composite" class="auto internal xref">Table 6</a><a href="#section-5.2.4-2.5.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.4-2.6">
-              <p id="section-5.2.4-2.6.1">Parse <code>ecdhCipherText</code>, <code>mlkemCipherText</code>, and <code>C</code> from <code>encryptedKey</code> encoded as <code>ecdhCipherText || mlkemCipherText || len(C, symAlgId) (|| symAlgId) || C</code> as specified in <a href="#ecc-mlkem-pkesk" class="auto internal xref">Section 5.3.1</a>, where <code>symAlgId</code> is present only in the case of a v3 PKESK.<a href="#section-5.2.4-2.6.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.4-2.7">
-              <p id="section-5.2.4-2.7.1">Compute <code>(ecdhKeyShare) = ECDH-KEM.Decaps(ecdhCipherText, ecdhSecretKey)</code><a href="#section-5.2.4-2.7.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.4-2.8">
-              <p id="section-5.2.4-2.8.1">Compute <code>(mlkemKeyShare) = ML-KEM.Decaps(mlkemCipherText, mlkemSecretKey)</code><a href="#section-5.2.4-2.8.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.4-2.9">
-              <p id="section-5.2.4-2.9.1">Compute <code>KEK = multiKeyCombine(mlkemKeyShare, ecdhKeyShare, ecdhCipherText, ecdhPublicKey, algId)</code> as defined in <a href="#kem-key-combiner" class="auto internal xref">Section 5.2.1</a><a href="#section-5.2.4-2.9.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.4-2.10">
-              <p id="section-5.2.4-2.10.1">Compute <code>sessionKey = AESKeyUnwrap(KEK, C)</code> with AES-256 as per <span>[<a href="#RFC3394" class="cite xref">RFC3394</a>]</span>, aborting if the 64 bit integrity check fails<a href="#section-5.2.4-2.10.1" class="pilcrow">¶</a></p>
-</li>
-            <li id="section-5.2.4-2.11">
-              <p id="section-5.2.4-2.11.1">Output <code>sessionKey</code><a href="#section-5.2.4-2.11.1" class="pilcrow">¶</a></p>
-</li>
-          </ol>
+          </ul>
 </section>
 </div>
 </section>
