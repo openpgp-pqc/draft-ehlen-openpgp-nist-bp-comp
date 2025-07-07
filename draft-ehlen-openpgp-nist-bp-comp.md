@@ -530,6 +530,7 @@ The following table describes the ECDSA parameters and artifact lengths:
 |                      | NIST-P-256                       | NIST P-384                                                 | brainpoolP256r1                       | brainpoolP384r1                       |
 ---------------------: | -------------------------------- | ---------------------------------------------------------- | ------------------------------------- | ------------------------------------- |
 Algorithm ID reference | TBD (ML-DSA-44+ECDSA-NIST-P-256) | TBD (ML-DSA-65+ECDSA-NIST-P-384,ML-DSA-87+ECDSA-NIST-P-384 | TBD (ML-DSA-65+ECDSA-brainpoolP256r1) | TBD (ML-DSA-87+ECDSA-brainpoolP384r1) |
+Field size             | 32 octets                        | 48 octets                                                  | 32 octets                             | 48 octets                             |
 Public key             | 65 octets                        | 97 octets                                                  | 65 octets                             | 97 octets                             |
 Secret key             | 32 octets                        | 48 octets                                                  | 32 octets                             | 48 octets                             |
 Signature value R      | 32 octets                        | 48 octets                                                  | 32 octets                             | 48 octets                             |
