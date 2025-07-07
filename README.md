@@ -2,16 +2,16 @@
 
 This is the working area for the individual Internet-Draft, "PQ/T Composite Schemes for OpenPGP using NIST and Brainpool Domain Parameters".
 
-* [Editor's Copy](https://openpgp-pqc.github.io/draft-individual-openpgp-nist-bp-comp/#go.draft-individual-openpgp-nist-bp-comp.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-individual-openpgp-nist-bp-comp)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-individual-openpgp-nist-bp-comp)
-* [Compare Editor's Copy to Individual Draft](https://openpgp-pqc.github.io/draft-individual-openpgp-nist-bp-comp/#go.draft-individual-openpgp-nist-bp-comp.diff)
+* [Editor's Copy](https://openpgp-pqc.github.io/draft-ehlen-openpgp-nist-bp-comp/#go.draft-ehlen-openpgp-nist-bp-comp.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ehlen-openpgp-nist-bp-comp)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-ehlen-openpgp-nist-bp-comp)
+* [Compare Editor's Copy to Individual Draft](https://openpgp-pqc.github.io/draft-ehlen-openpgp-nist-bp-comp/#go.draft-ehlen-openpgp-nist-bp-comp.diff)
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/openpgp-pqc/draft-individual-openpgp-nist-bp-comp/blob/gh-pages/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/openpgp-pqc/draft-ehlen-openpgp-nist-bp-comp/blob/gh-pages/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
