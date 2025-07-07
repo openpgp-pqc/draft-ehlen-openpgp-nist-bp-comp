@@ -291,6 +291,7 @@ In this section we define the encryption, decryption, and data formats for the E
 |                          | NIST P-256                                               | NIST P-384                                                        |
 | ------------------------ | -------------------------------------------------------- | --------------------------------------------------------          |
 | Algorithm ID reference   | TBD (ML-KEM-512+ECDH-NIST-P-256)                         | TBD (ML-KEM-768+ECDH-NIST-P-384, ML-KEM-1024+ECDH-NIST-P-384, )   |
+| Field size               | 32 octets                                                | 48 octets                                                         |
 | ECDH KEM                 | ECDH-KEM {{ecdh-kem}}                                    | ECDH-KEM {{ecdh-kem}}                                             |
 | ECDH public key          | 65 octets of SEC1-encoded public point                   | 97 octets of SEC1-encoded public point                            |
 | ECDH secret key          | 32 octets big-endian encoded secret scalar               | 48 octets big-endian encoded secret scalar                        |
@@ -301,6 +302,7 @@ In this section we define the encryption, decryption, and data formats for the E
 |                          | brainpoolP256r1                                          | brainpoolP384r1                                          |
 | ------------------------ | -------------------------------------------------------- | -------------------------------------------------------- |
 | Algorithm ID reference   | TBD (ML-KEM-768+ECDH-brainpoolP256r1)                    | TBD (ML-KEM-1024+ECDH-brainpoolP384r1)                   |
+| Field size               | 32 octets                                                | 48 octets                                                |
 | ECDH KEM                 | ECDH-KEM {{ecdh-kem}}                                    | ECDH-KEM {{ecdh-kem}}                                    |
 | ECDH public key          | 65 octets of SEC1-encoded public point                   | 97 octets of SEC1-encoded public point                   |
 | ECDH secret key          | 32 octets big-endian encoded secret scalar               | 48 octets big-endian encoded secret scalar               |
