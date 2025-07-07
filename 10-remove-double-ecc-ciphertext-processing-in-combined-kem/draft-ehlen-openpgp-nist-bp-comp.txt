@@ -313,8 +313,8 @@ Table of Contents
 4.1.  Composite KEMs
 
    The ML-KEM + ECDH public-key encryption involves both the ML-KEM and
-   an ECDH KEM in an a priori non-separable manner.  This is achieved
-   via KEM combination, i.e. both key encapsulations/decapsulations are
+   an ECDH KEM in a non-separable manner.  This is achieved via KEM
+   combination, i.e. both key encapsulations/decapsulations are
    performed in parallel, and the resulting key shares are fed into a
    key combiner to produce a single shared secret for message
    encryption.
