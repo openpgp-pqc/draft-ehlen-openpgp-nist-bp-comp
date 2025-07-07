@@ -351,6 +351,9 @@ Table of Contents
    |ID       |P-256)                      |P-384, ML-KEM-1024+ECDH-    |
    |reference|                            |NIST-P-384, )               |
    +---------+----------------------------+----------------------------+
+   |Field    |32 octets                   |48 octets                   |
+   |size     |                            |                            |
+   +---------+----------------------------+----------------------------+
    |ECDH KEM |ECDH-KEM Section 5.1.1.1    |ECDH-KEM Section 5.1.1.1    |
    +---------+----------------------------+----------------------------+
    |ECDH     |65 octets of SEC1-encoded   |97 octets of SEC1-encoded   |
@@ -375,6 +378,8 @@ Table of Contents
    +==============+===========================+========================+
    | Algorithm ID | TBD (ML-KEM-768+ECDH-     | TBD (ML-KEM-1024+ECDH- |
    | reference    | brainpoolP256r1)          | brainpoolP384r1)       |
+   +--------------+---------------------------+------------------------+
+   | Field size   | 32 octets                 | 48 octets              |
    +--------------+---------------------------+------------------------+
    | ECDH KEM     | ECDH-KEM                  | ECDH-KEM               |
    |              | Section 5.1.1.1           | Section 5.1.1.1        |
