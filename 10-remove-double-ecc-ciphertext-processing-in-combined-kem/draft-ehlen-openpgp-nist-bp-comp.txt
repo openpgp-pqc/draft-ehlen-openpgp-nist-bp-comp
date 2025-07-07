@@ -5,12 +5,12 @@
 Network Working Group                                            Q. Dang
 Internet-Draft                                                      NIST
 Intended status: Informational                                  S. Ehlen
-Expires: 6 January 2026                                      S. Kousidis
+Expires: 8 January 2026                                      S. Kousidis
                                                                      BSI
                                                                  J. Roth
                                                              F. Strenzke
                                                                   MTG AG
-                                                             5 July 2025
+                                                             7 July 2025
 
 
   PQ/T Composite Schemes for OpenPGP using NIST and Brainpool Elliptic
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 January 2026.
+   This Internet-Draft will expire on 8 January 2026.
 
 Copyright Notice
 
@@ -542,26 +542,78 @@ Table of Contents
 5.2.3.  Encryption Procedure
 
    The procedure to perform public-key encryption with an ML-KEM + ECDH
-   composite scheme is identical to the one described in Section 4.2.3
-   of [I-D.draft-ietf-openpgp-pqc], except that references are replaced
-   as follows:
+   composite scheme is as follows:
 
-   *  (Step 3) See Section 5.3.2 in the present document.
+   1.  Take the recipient's authenticated public-key packet pkComposite
+       and sessionKey as input
 
-   *  (Step 4) See Table 6 in the present document.
+   2.  Parse the algorithm ID from pkComposite and set it as algId
+
+   3.  Extract the ecdhPublicKey and mlkemPublicKey component from the
+       algorithm specific data encoded in pkComposite with the format
+       specified in Section 5.3.2.
+
+   4.  Instantiate the ECDH-KEM and the ML-KEM depending on the
+       algorithm ID according to Table 6
+
+   5.  Compute (ecdhCipherText, ecdhKeyShare) = ECDH-
+       KEM.Encaps(ecdhPublicKey)
+
+   6.  Compute (mlkemCipherText, mlkemKeyShare) = ML-
+       KEM.Encaps(mlkemPublicKey)
+
+   7.  Compute KEK = multiKeyCombine(mlkemKeyShare, ecdhKeyShare,
+       ecdhCipherText, ecdhPublicKey, algId) as defined in Section 5.2.1
+
+   8.  Compute C = AESKeyWrap(KEK, sessionKey) with AES-256 as per
+       [RFC3394] that includes a 64 bit integrity check
+
+   9.  Output the algorithm specific part of the PKESK as
+       ecdhCipherText || mlkemCipherText || len(C, symAlgId) (||
+       symAlgId) || C, where both symAlgId and len(C, symAlgId) are
+       single octet fields, symAlgId denotes the symmetric algorithm ID
+       used and is present only for a v3 PKESK, and len(C, symAlgId)
+       denotes the combined octet length of the fields specified as the
+       arguments.
 
 5.2.4.  Decryption Procedure
 
    The procedure to perform public-key decryption with an ML-KEM + ECDH
-   composite scheme is identical to the one described in Section 4.2.4
-   of [I-D.draft-ietf-openpgp-pqc], except that references are replaced
-   as follows:
+   composite scheme is as follows:
 
-   *  (Step 4) See Section 5.3.2 in the present document.
+   1.   Take the matching PKESK and own secret key packet as input
 
-   *  (Step 5) See Table 6 in the present document.
+   2.   From the PKESK extract the algorithm ID as algId and the wrapped
+        session key as encryptedKey
 
-   *  (Step 6) See Section 5.3.1 in the present document.
+   3.   Check that the own and the extracted algorithm ID match
+
+   4.   Parse the ecdhSecretKey and mlkemSecretKey from the algorithm
+        specific data of the own secret key encoded in the format
+        specified in Section 5.3.2
+
+   5.   Instantiate the ECDH-KEM and the ML-KEM depending on the
+        algorithm ID according to Table 6
+
+   6.   Parse ecdhCipherText, mlkemCipherText, and C from encryptedKey
+        encoded as ecdhCipherText || mlkemCipherText || len(C, symAlgId)
+        (|| symAlgId) || C as specified in Section 5.3.1, where symAlgId
+        is present only in the case of a v3 PKESK.
+
+   7.   Compute (ecdhKeyShare) = ECDH-KEM.Decaps(ecdhCipherText,
+        ecdhSecretKey)
+
+   8.   Compute (mlkemKeyShare) = ML-KEM.Decaps(mlkemCipherText,
+        mlkemSecretKey)
+
+   9.   Compute KEK = multiKeyCombine(mlkemKeyShare, ecdhKeyShare,
+        ecdhCipherText, ecdhPublicKey, algId) as defined in
+        Section 5.2.1
+
+   10.  Compute sessionKey = AESKeyUnwrap(KEK, C) with AES-256 as per
+        [RFC3394], aborting if the 64 bit integrity check fails
+
+   11.  Output sessionKey
 
 5.3.  Packet Specifications
 
